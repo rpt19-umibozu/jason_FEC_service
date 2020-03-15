@@ -1,10 +1,7 @@
-const Promise = require('bluebird');
 const db = require('./index.js').db;
-
 let coverURL = 'https://fec-photos.s3-us-west-1.amazonaws.com/coverPics/Cover';
 let otherURL = 'https://fec-photos.s3-us-west-1.amazonaws.com/otherPics/mainPic';
 let rndmURL  = 'https://fec-photos.s3-us-west-1.amazonaws.com/otherPics/randomListingPic';
-
 let p = 'photo';
 let c = 'caption';
 let sJ = 'Small.jpg';
@@ -53,7 +50,27 @@ let rndmCap = () => {
 
 let seedDB = () => {
   for (let i = 2; i < 101; i++) {
-    if (i % 2 === 0 && i > 9) {
+    if (i % 2 === 0 && i < 10) {
+      let randomNums = []
+      for (let j = 0; j < 14; j++) {
+        randomNums.push(random50());
+      }
+      let random_insert_query_15_underTen = `INSERT INTO Photos (name, ${p}1_a, ${p}1_b, ${p}1_${c}, ${p}2_a, ${p}2_b, ${p}2_${c}, ${p}3_a, ${p}3_b, ${p}3_${c}, ${p}4_a, ${p}4_b, ${p}4_${c}, ${p}5_a, ${p}5_b, ${p}5_${c}, ${p}6_a, ${p}6_b, ${p}6_${c}, ${p}7_a, ${p}7_b, ${p}7_${c}, ${p}8_a, ${p}8_b, ${p}8_${c}, ${p}9_a, ${p}9_b, ${p}9_${c}, ${p}10_a, ${p}10_b, ${p}10_${c}, ${p}11_a, ${p}11_b, ${p}11_${c}, ${p}12_a, ${p}12_b, ${p}12_${c}, ${p}13_a, ${p}13_b, ${p}13_${c}, ${p}14_a, ${p}14_b, ${p}14_${c}, ${p}15_a, ${p}15_b, ${p}15_${c}, createdAt) VALUES ('${listingNames[i]}', '${coverURL}0${i}${lJ}', '${coverURL}0${i}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[0]}${lJ}', '${rndmURL}${randomNums[0]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[1]}${lJ}', '${rndmURL}${randomNums[1]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[2]}${lJ}', '${rndmURL}${randomNums[2]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[3]}${lJ}', '${rndmURL}${randomNums[3]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[4]}${lJ}', '${rndmURL}${randomNums[4]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[5]}${lJ}', '${rndmURL}${randomNums[5]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[6]}${lJ}', '${rndmURL}${randomNums[6]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[7]}${lJ}', '${rndmURL}${randomNums[7]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[8]}${lJ}', '${rndmURL}${randomNums[8]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[9]}${lJ}', '${rndmURL}${randomNums[9]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[10]}${lJ}', '${rndmURL}${randomNums[10]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[11]}${lJ}', '${rndmURL}${randomNums[11]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[12]}${lJ}', '${rndmURL}${randomNums[12]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[13]}${lJ}', '${rndmURL}${randomNums[13]}${sJ}', '${rndmCap()}', CURDATE());`;
+
+      insertQuery(random_insert_query_15_underTen, (results) => {
+        console.log('Successfully inserted listings into database', results);
+      });
+    } else if (i % 2 !== 0 && i < 10) {
+      let randomNums = []
+      for (let j = 0; j < 29; j++) {
+        randomNums.push(random50());
+      }
+      let random_insert_query_30_underTen = `INSERT INTO Photos (name, ${p}1_a, ${p}1_b, ${p}1_${c}, ${p}2_a, ${p}2_b, ${p}2_${c}, ${p}3_a, ${p}3_b, ${p}3_${c}, ${p}4_a, ${p}4_b, ${p}4_${c}, ${p}5_a, ${p}5_b, ${p}5_${c}, ${p}6_a, ${p}6_b, ${p}6_${c}, ${p}7_a, ${p}7_b, ${p}7_${c}, ${p}8_a, ${p}8_b, ${p}8_${c}, ${p}9_a, ${p}9_b, ${p}9_${c}, ${p}10_a, ${p}10_b, ${p}10_${c}, ${p}11_a, ${p}11_b, ${p}11_${c}, ${p}12_a, ${p}12_b, ${p}12_${c}, ${p}13_a, ${p}13_b, ${p}13_${c}, ${p}14_a, ${p}14_b, ${p}14_${c}, ${p}15_a, ${p}15_b, ${p}15_${c}, ${p}16_a, ${p}16_b, ${p}16_${c}, ${p}17_a, ${p}17_b, ${p}17_${c}, ${p}18_a, ${p}18_b, ${p}18_${c}, ${p}19_a, ${p}19_b, ${p}19_${c}, ${p}20_a, ${p}20_b, ${p}20_${c}, ${p}21_a, ${p}21_b, ${p}21_${c}, ${p}22_a, ${p}22_b, ${p}22_${c}, ${p}23_a, ${p}23_b, ${p}23_${c}, ${p}24_a, ${p}24_b, ${p}24_${c}, ${p}25_a, ${p}25_b, ${p}25_${c}, ${p}26_a, ${p}26_b, ${p}26_${c}, ${p}27_a, ${p}27_b, ${p}27_${c}, ${p}28_a, ${p}28_b, ${p}28_${c}, ${p}29_a, ${p}29_b, ${p}29_${c}, ${p}30_a, ${p}30_b, ${p}30_${c}, createdAt) VALUES ('${listingNames[i]}', '${coverURL}0${i}${lJ}', '${coverURL}0${i}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[0]}${lJ}', '${rndmURL}${randomNums[0]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[1]}${lJ}', '${rndmURL}${randomNums[1]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[2]}${lJ}', '${rndmURL}${randomNums[2]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[3]}${lJ}', '${rndmURL}${randomNums[3]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[4]}${lJ}', '${rndmURL}${randomNums[4]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[5]}${lJ}', '${rndmURL}${randomNums[5]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[6]}${lJ}', '${rndmURL}${randomNums[6]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[7]}${lJ}', '${rndmURL}${randomNums[7]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[8]}${lJ}', '${rndmURL}${randomNums[8]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[9]}${lJ}', '${rndmURL}${randomNums[9]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[10]}${lJ}', '${rndmURL}${randomNums[10]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[11]}${lJ}', '${rndmURL}${randomNums[11]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[12]}${lJ}', '${rndmURL}${randomNums[12]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[13]}${lJ}', '${rndmURL}${randomNums[13]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[14]}${lJ}', '${rndmURL}${randomNums[14]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[15]}${lJ}', '${rndmURL}${randomNums[15]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[16]}${lJ}', '${rndmURL}${randomNums[16]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[17]}${lJ}', '${rndmURL}${randomNums[17]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[18]}${lJ}', '${rndmURL}${randomNums[18]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[19]}${lJ}', '${rndmURL}${randomNums[19]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[20]}${lJ}', '${rndmURL}${randomNums[20]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[21]}${lJ}', '${rndmURL}${randomNums[21]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[22]}${lJ}', '${rndmURL}${randomNums[22]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[23]}${lJ}', '${rndmURL}${randomNums[23]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[24]}${lJ}', '${rndmURL}${randomNums[24]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[25]}${lJ}', '${rndmURL}${randomNums[25]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[26]}${lJ}', '${rndmURL}${randomNums[26]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[27]}${lJ}', '${rndmURL}${randomNums[27]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[28]}${lJ}', '${rndmURL}${randomNums[28]}${sJ}', '${rndmCap()}', CURDATE());`;
+
+      insertQuery(random_insert_query_30_underTen, (results) => {
+        console.log('Successfully inserted listings into database', results);
+      });
+    } else if (i % 2 === 0 && i > 9) {
       let randomNums = []
       for (let j = 0; j < 14; j++) {
         randomNums.push(random50());
@@ -61,8 +78,30 @@ let seedDB = () => {
       let random_insert_query_15 = `INSERT INTO Photos (name, ${p}1_a, ${p}1_b, ${p}1_${c}, ${p}2_a, ${p}2_b, ${p}2_${c}, ${p}3_a, ${p}3_b, ${p}3_${c}, ${p}4_a, ${p}4_b, ${p}4_${c}, ${p}5_a, ${p}5_b, ${p}5_${c}, ${p}6_a, ${p}6_b, ${p}6_${c}, ${p}7_a, ${p}7_b, ${p}7_${c}, ${p}8_a, ${p}8_b, ${p}8_${c}, ${p}9_a, ${p}9_b, ${p}9_${c}, ${p}10_a, ${p}10_b, ${p}10_${c}, ${p}11_a, ${p}11_b, ${p}11_${c}, ${p}12_a, ${p}12_b, ${p}12_${c}, ${p}13_a, ${p}13_b, ${p}13_${c}, ${p}14_a, ${p}14_b, ${p}14_${c}, ${p}15_a, ${p}15_b, ${p}15_${c}, createdAt) VALUES ('${listingNames[i]}', '${coverURL}${i}${lJ}', '${coverURL}${i}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[0]}${lJ}', '${rndmURL}${randomNums[0]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[1]}${lJ}', '${rndmURL}${randomNums[1]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[2]}${lJ}', '${rndmURL}${randomNums[2]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[3]}${lJ}', '${rndmURL}${randomNums[3]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[4]}${lJ}', '${rndmURL}${randomNums[4]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[5]}${lJ}', '${rndmURL}${randomNums[5]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[6]}${lJ}', '${rndmURL}${randomNums[6]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[7]}${lJ}', '${rndmURL}${randomNums[7]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[8]}${lJ}', '${rndmURL}${randomNums[8]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[9]}${lJ}', '${rndmURL}${randomNums[9]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[10]}${lJ}', '${rndmURL}${randomNums[10]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[11]}${lJ}', '${rndmURL}${randomNums[11]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[12]}${lJ}', '${rndmURL}${randomNums[12]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[13]}${lJ}', '${rndmURL}${randomNums[13]}${sJ}', '${rndmCap()}', CURDATE());`;
 
       insertQuery(random_insert_query_15, (results) => {
-        console.log('Successfully Inserted Listings with 15 photos', results);
+        console.log('Successfully inserted listings into database', results);
       });
+    } else if (i % 2 !== 0 && i > 9) {
+      if (i % 3 === 0) {
+        let randomNums = []
+        for (let j = 0; j < 29; j++) {
+          randomNums.push(random50());
+        }
+        let random_insert_query_30_overTen = `INSERT INTO Photos (name, ${p}1_a, ${p}1_b, ${p}1_${c}, ${p}2_a, ${p}2_b, ${p}2_${c}, ${p}3_a, ${p}3_b, ${p}3_${c}, ${p}4_a, ${p}4_b, ${p}4_${c}, ${p}5_a, ${p}5_b, ${p}5_${c}, ${p}6_a, ${p}6_b, ${p}6_${c}, ${p}7_a, ${p}7_b, ${p}7_${c}, ${p}8_a, ${p}8_b, ${p}8_${c}, ${p}9_a, ${p}9_b, ${p}9_${c}, ${p}10_a, ${p}10_b, ${p}10_${c}, ${p}11_a, ${p}11_b, ${p}11_${c}, ${p}12_a, ${p}12_b, ${p}12_${c}, ${p}13_a, ${p}13_b, ${p}13_${c}, ${p}14_a, ${p}14_b, ${p}14_${c}, ${p}15_a, ${p}15_b, ${p}15_${c}, ${p}16_a, ${p}16_b, ${p}16_${c}, ${p}17_a, ${p}17_b, ${p}17_${c}, ${p}18_a, ${p}18_b, ${p}18_${c}, ${p}19_a, ${p}19_b, ${p}19_${c}, ${p}20_a, ${p}20_b, ${p}20_${c}, ${p}21_a, ${p}21_b, ${p}21_${c}, ${p}22_a, ${p}22_b, ${p}22_${c}, ${p}23_a, ${p}23_b, ${p}23_${c}, ${p}24_a, ${p}24_b, ${p}24_${c}, ${p}25_a, ${p}25_b, ${p}25_${c}, ${p}26_a, ${p}26_b, ${p}26_${c}, ${p}27_a, ${p}27_b, ${p}27_${c}, ${p}28_a, ${p}28_b, ${p}28_${c}, ${p}29_a, ${p}29_b, ${p}29_${c}, ${p}30_a, ${p}30_b, ${p}30_${c}, createdAt) VALUES ('${listingNames[i]}', '${coverURL}${i}${lJ}', '${coverURL}${i}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[0]}${lJ}', '${rndmURL}${randomNums[0]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[1]}${lJ}', '${rndmURL}${randomNums[1]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[2]}${lJ}', '${rndmURL}${randomNums[2]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[3]}${lJ}', '${rndmURL}${randomNums[3]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[4]}${lJ}', '${rndmURL}${randomNums[4]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[5]}${lJ}', '${rndmURL}${randomNums[5]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[6]}${lJ}', '${rndmURL}${randomNums[6]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[7]}${lJ}', '${rndmURL}${randomNums[7]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[8]}${lJ}', '${rndmURL}${randomNums[8]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[9]}${lJ}', '${rndmURL}${randomNums[9]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[10]}${lJ}', '${rndmURL}${randomNums[10]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[11]}${lJ}', '${rndmURL}${randomNums[11]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[12]}${lJ}', '${rndmURL}${randomNums[12]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[13]}${lJ}', '${rndmURL}${randomNums[13]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[14]}${lJ}', '${rndmURL}${randomNums[14]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[15]}${lJ}', '${rndmURL}${randomNums[15]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[16]}${lJ}', '${rndmURL}${randomNums[16]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[17]}${lJ}', '${rndmURL}${randomNums[17]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[18]}${lJ}', '${rndmURL}${randomNums[18]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[19]}${lJ}', '${rndmURL}${randomNums[19]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[20]}${lJ}', '${rndmURL}${randomNums[20]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[21]}${lJ}', '${rndmURL}${randomNums[21]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[22]}${lJ}', '${rndmURL}${randomNums[22]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[23]}${lJ}', '${rndmURL}${randomNums[23]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[24]}${lJ}', '${rndmURL}${randomNums[24]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[25]}${lJ}', '${rndmURL}${randomNums[25]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[26]}${lJ}', '${rndmURL}${randomNums[26]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[27]}${lJ}', '${rndmURL}${randomNums[27]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[28]}${lJ}', '${rndmURL}${randomNums[28]}${sJ}', '${rndmCap()}', CURDATE());`;
+
+        insertQuery(random_insert_query_30_overTen, (results) => {
+          console.log('Successfully inserted listings into database', results);
+        });
+      } else {
+        let randomNums = []
+        for (let j = 0; j < 4; j++) {
+          randomNums.push(random50());
+        }
+        let random_insert_query_5 = `INSERT INTO Photos (name, ${p}1_a, ${p}1_b, ${p}1_${c}, ${p}2_a, ${p}2_b, ${p}2_${c}, ${p}3_a, ${p}3_b, ${p}3_${c}, ${p}4_a, ${p}4_b, ${p}4_${c}, ${p}5_a, ${p}5_b, ${p}5_${c}, createdAt) VALUES ('${listingNames[i]}', '${coverURL}${i}${lJ}', '${coverURL}${i}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[0]}${lJ}', '${rndmURL}${randomNums[0]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[1]}${lJ}', '${rndmURL}${randomNums[1]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[2]}${lJ}', '${rndmURL}${randomNums[2]}${sJ}', '${rndmCap()}', '${rndmURL}${randomNums[3]}${lJ}', '${rndmURL}${randomNums[3]}${sJ}', '${rndmCap()}', CURDATE());`;
+
+        insertQuery(random_insert_query_5, (results) => {
+          console.log('Successfully inserted listings into database', results);
+        });
+      }
     }
   }
 };
