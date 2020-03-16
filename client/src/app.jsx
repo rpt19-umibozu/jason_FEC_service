@@ -16,10 +16,19 @@ class App extends React.Component {
     }
 
   }
+
+  handleSearchBar (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      console.log('default prevented');
+    }
+  }
+
   render() {
     return (
       <div id="photoGalleryService">
-        <this.state.navBar/>
+        <this.state.navBar handleSearchBar={this.handleSearchBar.bind(this)}/>
+        <br/>
         <this.state.photoGallery/>
         <this.state.carousel/>
       </div>
