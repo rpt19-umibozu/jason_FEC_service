@@ -28,7 +28,6 @@ class App extends React.Component {
     return (
       <div id="photoGalleryService">
         <this.state.navBar handleSearchBar={this.handleSearchBar.bind(this)}/>
-        <br/>
         <this.state.photoGallery/>
         <this.state.carousel/>
       </div>
