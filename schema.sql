@@ -6,6 +6,7 @@ USE photo_gallery;
 
 CREATE TABLE IF NOT EXISTS Photos (
   id INT(5) AUTO_INCREMENT PRIMARY KEY,
+  listing_id INT(5),
   name VARCHAR(100),
   photo1_a VARCHAR(150),
   photo1_b VARCHAR(150),
