@@ -10,12 +10,14 @@
   "scripts": {
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon server/index.js",
-    "create-db": "mysql -u root < schema.sql"
+    "create-db": "mysql -u root < schema.sql",
+    "seed-db": "node db/seed.js"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "jquery": "^3.4.1",
+    "mysql": "^2.18.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
   },
