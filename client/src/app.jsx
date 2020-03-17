@@ -12,10 +12,27 @@ class App extends React.Component {
     this.state = {
       navBar: NavBar,
       photoGallery: PhotoGallery,
-      carousel: Carousel
+      carousel: Carousel,
+      currentListing: []
     }
 
   }
+
+  componentDidMount() {
+    $.ajax({
+      url: '/10001',
+      datatype: 'json',
+      success: (result) => {
+        console.log('result in client', result);
+        this.setState({
+          currentListing: result[0]
+        });
+      },
+      error: (err) => {
+        console.log('error', err);
+      }
+    });
+  };
 
   handleSearchBar (e) {
     if (e.key === 'Enter') {
@@ -28,7 +45,7 @@ class App extends React.Component {
     return (
       <div id="photoGalleryService">
         <this.state.navBar handleSearchBar={this.handleSearchBar.bind(this)}/>
-        <this.state.photoGallery/>
+        <this.state.photoGallery state={this.state}/>
         <this.state.carousel/>
       </div>
     )

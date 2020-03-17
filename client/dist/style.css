@@ -1,0 +1,13 @@
+::placeholder {
+  font-weight: bold;
+  font-size: 1.45em;
+  font-stretch: ultra-condensed;
+  padding-left: 4.5px;
+  letter-spacing: 0.75px;
+  display:inline-block;
+    -webkit-transform:scale(0.97,1.04); /* Safari and Chrome */
+    -moz-transform:scale(0.97,1.04); /* Firefox */
+    -ms-transform:scale(0.97,1.04); /* IE 9 */
+    -o-transform:scale(0.97,1.04); /* Opera */
+    transform:scale(0.97,1.04);
+}
