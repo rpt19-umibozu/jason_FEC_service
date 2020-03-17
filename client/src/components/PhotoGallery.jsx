@@ -7,13 +7,16 @@ class PhotoGallery extends React.Component {
   render() {
     return (
       <div>
-        <div style={{backgroundImage:`url(${this.props.state.currentListing.photo1_a})`, backgroundSize:'718px', backgroundRepeat:'no-repeat', height:'440px', width:'49.9%', border: '.5px solid #575656', backgroundColor:'#575656', float:'left'}}>
+        <div style={{backgroundImage:`url(${this.props.state.currentListing.photo1_a})`, backgroundSize:'718px', backgroundRepeat:'no-repeat', height:'441px', width:'49.9%', border: '.5px solid #454545', backgroundPosition:'0px 0.25px', backgroundColor:'#454545', float:'left'}}>
         </div>
-        <div style={{backgroundImage:`url(${this.props.state.currentListing.photo2_b})`, backgroundSize:'718px', backgroundRepeat:'no-repeat', height:'239px', width:'25%', border: '1px solid #575656', float:'left'}}>
+        <div style={{backgroundImage:`url(${this.props.state.currentListing.photo2_b})`, backgroundSize:'358px', backgroundRepeat:'no-repeat', height:'219px', width:'24.95%', border: '1px solid #454545', backgroundPosition:'0.25px 0px', backgroundColor:'#454545', float:'left'}}>
         </div>
-        {/* <img src={this.props.state.currentListing.photo2_b} style={{height:'239px', width:'25%', border: '1px solid #575656', float:'left'}}/> */}
-        <img src={this.props.state.currentListing.photo4_b} style={{height:'239px', width:'24%', border: '1px solid #575656'}}/>
-        <img src={this.props.state.currentListing.photo3_b} style={{height:'239px', width:'24%', border: '1px solid #575656'}}/>
+        <div style={{backgroundImage:`url(${this.props.state.currentListing.photo4_b})`, backgroundSize:'358px', backgroundRepeat:'no-repeat', height:'219px', width:'24.8%', border: '1px solid #454545', backgroundColor:'#454545', float:'left'}}>
+        </div>
+        <div style={{backgroundImage:`url(${this.props.state.currentListing.photo3_b})`, backgroundSize:'358px', backgroundRepeat:'no-repeat', height:'219px', width:'24.95%', border: '1px solid #454545', backgroundColor:'#454545', float:'left'}}>
+        </div>
+        <div style={{backgroundImage:`url(${this.props.state.currentListing.photo5_b})`, backgroundSize:'358px', backgroundRepeat:'no-repeat', height:'220px', width:'24.85%', border: '.5px solid #454545', backgroundPosition:'0.25px 0px', backgroundColor:'#454545', float:'left'}}>
+        </div>
       </div>
     )
   }
