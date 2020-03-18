@@ -24,7 +24,6 @@ app.get('/listing-info', (req, res) => {
     //identifier is name
     getMainRouteString(id)
     .then((results) => {
-      console.log('hi')
       res.send(results);
     })
     .catch((err) => {
@@ -35,17 +34,15 @@ app.get('/listing-info', (req, res) => {
     id = Number(id);
     getMainRouteNum(id)
     .then((results) => {
-      console.log('results from server', results);
       res.send(results);
     })
     .catch((err) => {
-      console.log('err', err);
+      console.log('error', err);
     });
   }
 });
 
 //reload page with product identifier in url
 app.get('/:id', (req, res) => {
-  console.log('id route');
   res.sendFile(fullPath);
 });
