@@ -12,10 +12,33 @@ class App extends React.Component {
     this.state = {
       navBar: NavBar,
       photoGallery: PhotoGallery,
-      carousel: Carousel
+      carousel: Empty,
+      currentListing: []
     }
 
   }
+
+  componentDidMount() {
+    let url = window.location.href;
+    let id = url.split('/').pop();
+    let data = {listingId: id};
+    console.log(data)
+    console.log('id', id);
+      $.ajax({
+        method: 'GET',
+        url: '/listing-info',
+        data: data,
+        dataType: 'text',
+        success: (result) => {
+          result = JSON.parse(result);
+          console.log('result in client', result);
+          this.setState(() => ({currentListing: result[0]}));
+        },
+        error: (err) => {
+          console.log('error', err);
+        }
+      });
+  };
 
   handleSearchBar (e) {
     if (e.key === 'Enter') {
@@ -28,7 +51,7 @@ class App extends React.Component {
     return (
       <div id="photoGalleryService">
         <this.state.navBar handleSearchBar={this.handleSearchBar.bind(this)}/>
-        <this.state.photoGallery/>
+        <this.state.photoGallery state={this.state}/>
         <this.state.carousel/>
       </div>
     )
