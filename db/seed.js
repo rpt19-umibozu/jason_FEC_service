@@ -41,7 +41,7 @@ let random2102 = () => {
 };
 
 let random50 = () => {
-  return Math.floor(Math.random() * 50);
+  return Math.ceil(Math.random() * 50);
 };
 
 let rndmCap = () => {
