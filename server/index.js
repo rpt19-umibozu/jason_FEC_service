@@ -16,7 +16,7 @@ app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
 
-//get product by unique identifier using req object params
+//get product by unique identifier using req object query property
 app.get('/listing-info', (req, res) => {
   console.log('inside listing-info');
   let id = req.query.listingId;
