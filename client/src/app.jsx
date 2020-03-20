@@ -13,7 +13,8 @@ class App extends React.Component {
       navBar: NavBar,
       photoGallery: PhotoGallery,
       carousel: Empty,
-      currentListing: []
+      currentListing: [],
+      is_Favorite: false
     }
 
   }
