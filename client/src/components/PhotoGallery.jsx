@@ -70,7 +70,7 @@ class PhotoGallery extends React.Component {
         <div style={{backgroundImage:`url(${this.props.state.currentListing.photo3_b})`, backgroundSize:'358px', backgroundRepeat:'no-repeat', height:'219px', width:'24.95%', border: '1px solid #454545', backgroundColor:'#454545', float:'left'}}>
         </div>
         <div style={{backgroundImage:`url(${this.props.state.currentListing.photo5_b})`, backgroundSize:'358px', backgroundRepeat:'no-repeat', height:'220px', width:'24.85%', border: '.5px solid #454545', backgroundPosition:'0.25px 0px', backgroundColor:'#454545', float:'left'}}>
-          <input className="photoGalButton" id="viewPhotos" type="button" value="View Photos" style={{   height:'36px', width:'113px', border:'none', borderRadius:'4px', margin:'161px 0 0 222px'}}></input>
+          <input className="photoGalButton" id="viewPhotos" type="button" value="View Photos" onClick={this.props.handleViewPhotos} style={{height:'36px', width:'113px', border:'none', borderRadius:'4px', margin:'161px 0 0 222px'}}></input>
         </div>
       </div>
     )
