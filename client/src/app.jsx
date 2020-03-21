@@ -15,13 +15,31 @@ class App extends React.Component {
       carousel: Carousel,
       currentListing: [],
       is_Favorite: false,
-      currentPhoto: null,
-      photoNumber: null,
+      currentPhotoUrl: null,
+      s3PhotoBucketNumber: null,
+      currentPhotoIndexInListing: 1,
+      numOfCurrentListingPhotos: 30,
+      currentPhotoCaption: 'Super Cool Listing!',
       nextPrevImages: [],
       nextPrevBorders: ['2px solid black', 'none', 'none', 'none'],
       nextPrevOpacities: ['100%', '70%', '70%', '70%']
     }
 
+  }
+
+  dupGetNumOfListingPhotos (listing) {
+    let dupPhotosArray = Object.keys(listing).slice(4, -3);
+    let dupListingSmallUrls = [];
+    let count = 0;
+    for (let key of dupPhotosArray) {
+      if (listing[key]) {
+        if (key.split('').slice(-1) == 'b') {
+          dupListingSmallUrls.push(listing[key])
+        }
+        count++
+      }
+    }
+    return Math.ceil(count / 3);
   }
 
   componentDidMount() {
@@ -38,10 +56,13 @@ class App extends React.Component {
         success: (result) => {
           result = JSON.parse(result);
           console.log('result in client', result);
+          let numOfPhotos = this.dupGetNumOfListingPhotos(result[0]);
           this.setState(() => ({
             currentListing: result[0],
-            currentPhoto: result[0].photo1_a,
-            nextPrevImages: [result[0].photo1_b, result[0].photo2_b, result[0].photo3_b, result[0].photo4_b]
+            currentPhotoUrl: result[0].photo1_a,
+            nextPrevImages: [result[0].photo1_b, result[0].photo2_b, result[0].photo3_b, result[0].photo4_b],
+            numOfCurrentListingPhotos: numOfPhotos,
+            currentPhotoCaption: result[0].photo1_caption
           }));
         },
         error: (err) => {
@@ -69,7 +90,6 @@ class App extends React.Component {
       let listing = this.state.currentListing;
       console.log('listing', listing);
       for (let key of photosArray) {
-        console.log('key', key)
         if (listing[key]) {
           if (key.split('').slice(-1) == 'b') {
             listingSmallUrls.push(listing[key])
@@ -83,12 +103,12 @@ class App extends React.Component {
     console.log('numOflistingPhotos', numOfListingPhotos);
     console.log('listingSmallUrls', listingSmallUrls);
     let index = listingSmallUrls.indexOf(e.target.src);
-    console.log('index', index);
+    this.setState({
+      currentPhotoIndexInListing: index + 1
+    });
     let nextPrevIndex = this.state.nextPrevImages.indexOf(e.target.src);
     console.log('nextPrevIndex', nextPrevIndex);
-
     if (nextPrevIndex > 1 && this.state.nextPrevImages[this.state.nextPrevImages.length - 1] !== listingSmallUrls[listingSmallUrls.length - 1]) {
-
       this.setState({
         nextPrevImages: this.state.nextPrevImages.map((x, i) => {
           if (i < 3) {
@@ -102,21 +122,20 @@ class App extends React.Component {
           }
         })
       });
-
       if (nextPrevIndex === 2) {
         if (index === listingSmallUrls.length - 2) {
           this.setState({
             nextPrevBorders: ['none', 'none', '2px solid black', 'none'],
             nextPrevOpacities: ['70%', '70%', '100%', '70%'],
-            currentPhoto: src,
-            photoNumber: num
+            currentPhotoUrl: src,
+            s3PhotoBucketNumber: num
           });
         } else {
           this.setState({
             nextPrevBorders: ['none', '2px solid black', 'none', 'none'],
             nextPrevOpacities: ['70%', '100%', '70%', '70%'],
-            currentPhoto: src,
-            photoNumber: num
+            currentPhotoUrl: src,
+            s3PhotoBucketNumber: num
           });
         }
       } else if (nextPrevIndex === 3) {
@@ -124,19 +143,18 @@ class App extends React.Component {
           this.setState({
             nextPrevBorders: ['none', 'none', 'none', '2px solid black'],
             nextPrevOpacities: ['70%', '70%', '70%', '100%'],
-            currentPhoto: src,
-            photoNumber: num
+            currentPhotoUrl: src,
+            s3PhotoBucketNumber: num
           });
         } else {
           this.setState({
             nextPrevBorders: ['none', 'none', '2px solid black', 'none'],
             nextPrevOpacities: ['70%', '70%', '100%', '70%'],
-            currentPhoto: src,
-            photoNumber: num
+            currentPhotoUrl: src,
+            s3PhotoBucketNumber: num
           });
         }
       }
-
     } else if (nextPrevIndex < 2 && this.state.nextPrevImages[0] !== listingSmallUrls[0]) {
       this.setState({
         nextPrevImages: this.state.nextPrevImages.map((x, i) => {
@@ -154,45 +172,44 @@ class App extends React.Component {
         this.setState({
           nextPrevBorders: ['none', 'none', '2px solid black', 'none'],
           nextPrevOpacities: ['70%', '70%', '100%', '70%'],
-          currentPhoto: src,
-          photoNumber: num
+          currentPhotoUrl: src,
+          s3PhotoBucketNumber: num
         });
       } else {
         this.setState({
           nextPrevBorders: ['none', '2px solid black', 'none', 'none'],
           nextPrevOpacities: ['70%', '100%', '70%', '70%'],
-          currentPhoto: src,
-          photoNumber: num
+          currentPhotoUrl: src,
+          s3PhotoBucketNumber: num
         });
       }
-
     } else if (nextPrevIndex === 0 && this.state.nextPrevImages[0] === listingSmallUrls[0]) {
       this.setState({
         nextPrevBorders: ['2px solid black', 'none', 'none', 'none'],
         nextPrevOpacities: ['100%', '70%', '70%', '70%'],
-        currentPhoto: src,
-        photoNumber: num
+        currentPhotoUrl: src,
+        s3PhotoBucketNumber: num
       });
     } else if (nextPrevIndex === 1 && this.state.nextPrevImages[0] === listingSmallUrls[0]) {
       this.setState({
         nextPrevBorders: ['none', '2px solid black', 'none', 'none'],
         nextPrevOpacities: ['70%', '100%', '70%', '70%'],
-        currentPhoto: src,
-        photoNumber: num
+        currentPhotoUrl: src,
+        s3PhotoBucketNumber: num
       });
     } else if (nextPrevIndex === 2 && this.state.nextPrevImages[this.state.nextPrevImages.length - 1] === listingSmallUrls[listingSmallUrls.length - 1]) {
       this.setState({
         nextPrevBorders: ['none', 'none', '2px solid black', 'none'],
         nextPrevOpacities: ['70%', '70%', '100%', '70%'],
-        currentPhoto: src,
-        photoNumber: num
+        currentPhotoUrl: src,
+        s3PhotoBucketNumber: num
       });
     } else if (nextPrevIndex === 3 && this.state.nextPrevImages[this.state.nextPrevImages.length - 1] === listingSmallUrls[listingSmallUrls.length - 1]) {
       this.setState({
         nextPrevBorders: ['none', 'none', 'none', '2px solid black'],
         nextPrevOpacities: ['70%', '70%', '70%', '100%'],
-        currentPhoto: src,
-        photoNumber: num
+        currentPhotoUrl: src,
+        s3PhotoBucketNumber: num
       });
     } else {
       let newBorders = ['none', 'none', 'none', 'none'].map((x, i) => {
@@ -212,8 +229,8 @@ class App extends React.Component {
       this.setState({
         nextPrevBorders: newBorders,
         nextPrevOpacities: newOpacities,
-        currentPhoto: src,
-        photoNumber: num
+        currentPhotoUrl: src,
+        s3PhotoBucketNumber: num
       });
     }
   };

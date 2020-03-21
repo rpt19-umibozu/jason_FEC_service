@@ -12,7 +12,7 @@ class Carousel extends React.Component {
         <img onClick={this.props.handleExit.bind(this)} src="https://fec-photos.s3-us-west-1.amazonaws.com/otherPics/carouselX.png" alt="carousel exit button" id="carouselExitButton"/>
         <div style={{float:'left'}}>
         <img src="https://fec-photos.s3-us-west-1.amazonaws.com/otherPics/carouselLeft.png" alt="carousel left button" id="carouselLeftButton"/>
-        <img src={`${this.props.state.currentPhoto}`} alt="currently selected carousel photo" id="currentCarouselPhoto"/>
+        <img src={`${this.props.state.currentPhotoUrl}`} alt="currently selected carousel photo" id="currentCarouselPhoto"/>
         <img src="https://fec-photos.s3-us-west-1.amazonaws.com/otherPics/carouselRight.png" alt="carousel right button" id="carouselRightButton"/>
         </div>
           <div id="prevAndNextImagesContainer">
@@ -22,8 +22,8 @@ class Carousel extends React.Component {
             <img src={this.props.state.nextPrevImages[3]} alt='preview of previous and next images in carousel' className='nextPrevImages'onClick={this.props.handleNextPrevClick} style={{border:`${this.props.state.nextPrevBorders[3]}`, opacity:`${this.props.state.nextPrevOpacities[3]}`}} id="3"/>
           </div>
           <div id="numberAndCaptionContainer">
-          <h4 id="numberOfCurrentPhoto">1 / 30</h4>
-          <p id="caption">The treehouse is a great place for a romantic picnic!</p>
+          <h4 id="numberOfCurrentPhoto">{`${this.props.state.currentPhotoIndexInListing} / ${this.props.state.numOfCurrentListingPhotos}`}</h4>
+          <p id="caption">{`${this.props.state.currentPhotoCaption}`}</p>
           </div>
       </div>
     )
