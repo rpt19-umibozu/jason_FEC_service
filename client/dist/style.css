@@ -49,13 +49,12 @@ div #carouselContainer {
 }
 
 #prevAndNextImagesContainer {
-  margin: 72.5px 40px 0 1070px;
+  margin: 71px 40px 0 1072px;
 }
 
 .nextPrevImages {
-  box-shadow:'0 0 200px rgb(0, 0, 0, 0.5%)';
-  height: 66px;
-  width: 68px;
+  height: 63px;
+  width: 65px;
   margin: 0 13px 0 0;
   border-radius: 4px;
 }

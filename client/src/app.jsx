@@ -12,7 +12,7 @@ class App extends React.Component {
     this.state = {
       navBar: NavBar,
       photoGallery: PhotoGallery,
-      carousel: Empty,
+      carousel: Carousel,
       currentListing: [],
       is_Favorite: false,
       currentPhoto: null,

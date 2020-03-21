@@ -6,7 +6,7 @@ class Carousel extends React.Component {
     super(props);
     this.state = {
       nextPrevBorders: ['none', 'none', 'none', 'none'],
-      nextPrevOpacities: ['100%', '100%', '100%', '100%']
+      nextPrevOpacities: ['100%', '70%', '70%', '70%']
     };
   }
 
@@ -20,13 +20,21 @@ class Carousel extends React.Component {
     let id = e.target.id;
     let newBorders = ['none', 'none', 'none', 'none'].map((x, i) => {
       if (i == id) {
-        return '1px solid black';
+        return '2px solid black';
+      } else {
+        return x;
+      }
+    });
+    let newOpacities = ['70%', '70%', '70%', '70%'].map((x, i) => {
+      if (i == id) {
+        return '100%';
       } else {
         return x;
       }
     });
       this.setState({
-        nextPrevBorders: newBorders
+        nextPrevBorders: newBorders,
+        nextPrevOpacities: newOpacities
       });
   }
 
