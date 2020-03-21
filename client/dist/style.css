@@ -11,3 +11,29 @@
     -o-transform:scale(0.97,1.04); /* Opera */
     transform:scale(0.97,1.04);
 }
+
+.photoGalButton {
+  font-style: 'sans-serif';
+  font-weight: 450;
+  font-size: 0.88em;
+  font-stretch: 'ultra-condensed';
+  padding-left: 33px;
+  width:'100px';
+  color: rgba(65, 65, 65);
+}
+
+.photoGalButton:focus{
+  border: 1px solid rgb(0, 0, 0, 0.5) !important;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.75);
+  outline: none;
+}
+
+#viewPhotos{
+  font-style: 'sans-serif';
+  font-weight: 450;
+  font-size: 0.87em;
+  font-stretch: 'ultra-condensed';
+  padding-left: 8px;
+  width:'100px';
+  color: rgba(65, 65, 65);
+}

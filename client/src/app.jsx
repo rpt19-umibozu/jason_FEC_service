@@ -13,7 +13,19 @@ class App extends React.Component {
       navBar: NavBar,
       photoGallery: PhotoGallery,
       carousel: Empty,
-      currentListing: []
+      currentListing: [],
+      is_Favorite: false
+    }
+
+    this.handleViewPhotos = (e) => {
+      e.preventDefault;
+      console.log('clicked');
+      console.log('target', e.target);
+      console.log('this', this);
+        this.setState({
+          photoGallery: Empty,
+          carousel: Carousel
+        });
     }
 
   }
@@ -51,7 +63,7 @@ class App extends React.Component {
     return (
       <div id="photoGalleryService">
         <this.state.navBar handleSearchBar={this.handleSearchBar.bind(this)}/>
-        <this.state.photoGallery state={this.state}/>
+        <this.state.photoGallery state={this.state} handleViewPhotos={this.handleViewPhotos.bind(this)}/>
         <this.state.carousel/>
       </div>
     )
