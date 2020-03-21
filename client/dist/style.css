@@ -39,9 +39,23 @@ div #carouselContainer {
   height: 525.5px;
   width: 788px;
   border-radius: 15px;
+  float: 'left';
 }
 
 #carouselRightButton {
   height: 35px;
   margin: 0 0 250px 0;
+  float: 'left';
+}
+
+#prevAndNextImagesContainer {
+  margin: 72.5px 40px 0 1070px;
+}
+
+.nextPrevImages {
+  box-shadow:'0 0 200px rgb(0, 0, 0, 0.5%)';
+  height: 66px;
+  width: 68px;
+  margin: 0 13px 0 0;
+  border-radius: 4px;
 }

@@ -12,8 +12,11 @@ class App extends React.Component {
     this.state = {
       navBar: NavBar,
       photoGallery: PhotoGallery,
-      carousel: Carousel,
+      carousel: Empty,
       currentListing: [],
+      is_Favorite: false,
+      currentPhoto: null,
+      nextPrevImages: []
     }
 
   }
@@ -32,7 +35,11 @@ class App extends React.Component {
         success: (result) => {
           result = JSON.parse(result);
           console.log('result in client', result);
-          this.setState(() => ({currentListing: result[0]}));
+          this.setState(() => ({
+            currentListing: result[0],
+            currentPhoto: result[0].photo1_a,
+            nextPrevImages: [result[0].photo1_b, result[0].photo2_b, result[0].photo3_b, result[0].photo4_b]
+          }));
         },
         error: (err) => {
           console.log('error', err);
