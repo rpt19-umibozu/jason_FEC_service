@@ -2,8 +2,8 @@
   font-weight: bold;
   font-size: 1.45em;
   font-stretch: ultra-condensed;
-  padding-left: 4.5px;
   letter-spacing: 0.75px;
+  padding-left: 4.5px;
   display:inline-block;
     -webkit-transform:scale(0.97,1.04); /* Safari and Chrome */
     -moz-transform:scale(0.97,1.04); /* Firefox */
@@ -49,7 +49,7 @@ div #carouselContainer {
 }
 
 #prevAndNextImagesContainer {
-  margin: 71px 40px 0 1072px;
+  margin: 73px 40px 0 1062px;
 }
 
 .nextPrevImages {
@@ -57,4 +57,29 @@ div #carouselContainer {
   width: 65px;
   margin: 0 13px 0 0;
   border-radius: 4px;
+}
+
+#numberAndCaptionContainer {
+  margin: 0 4px 200px 265px;
+}
+
+#numberOfCurrentPhoto {
+  margin: 58px 0px 0px 790px;
+  font-weight: bold;
+  opacity: 70%;
+  font-size: 1em;
+  font-stretch: ultra-condensed;
+  letter-spacing: -0.5px;
+  font-family: 'Charter';
+}
+
+#caption {
+  font-family: 'Calibre', sans-serif;
+  margin: 18px 63px 0px 791.5px;
+  font-size: 1em;
+  font-weight: lighter;
+  font-stretch: ultra-condensed;
+  line-height: 22px;
+  opacity: 70%;
+  /* font-stretch: ultra-expanded; */
 }
