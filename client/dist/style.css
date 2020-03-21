@@ -35,8 +35,13 @@ div #carouselContainer {
 }
 
 #currentCarouselPhoto {
-  margin: 0px 100px 4.5px 37px;
+  margin: 0px 39px 4.5px 37px;
   height: 525.5px;
   width: 788px;
   border-radius: 15px;
+}
+
+#carouselRightButton {
+  height: 35px;
+  margin: 0 0 250px 0;
 }
