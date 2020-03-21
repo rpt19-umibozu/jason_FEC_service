@@ -12,8 +12,8 @@ class App extends React.Component {
     this.state = {
       navBar: NavBar,
       photoGallery: PhotoGallery,
-      carousel: Empty,
-      currentListing: []
+      carousel: Carousel,
+      currentListing: [],
     }
 
   }
@@ -52,7 +52,7 @@ class App extends React.Component {
       <div id="photoGalleryService">
         <this.state.navBar handleSearchBar={this.handleSearchBar.bind(this)}/>
         <this.state.photoGallery state={this.state}/>
-        <this.state.carousel/>
+        <this.state.carousel state={this.state}/>
       </div>
     )
   }
