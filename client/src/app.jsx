@@ -25,6 +25,17 @@ class App extends React.Component {
       nextPrevOpacities: ['100%', '70%', '70%', '70%']
     }
 
+    this.handleViewPhotos = (e) => {
+      e.preventDefault;
+      console.log('clicked');
+      console.log('target', e.target);
+      console.log('this', this);
+        this.setState({
+          photoGallery: Empty,
+          carousel: Carousel
+        });
+    }
+
   }
 
   dupGetNumOfListingPhotos (listing) {
