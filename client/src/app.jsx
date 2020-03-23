@@ -118,6 +118,7 @@ class App extends React.Component {
     });
     let nextPrevIndex = this.state.nextPrevImages.indexOf(e.target.src);
     console.log('nextPrevIndex', nextPrevIndex);
+    console.log('index', index);
     if (nextPrevIndex > 1 && this.state.nextPrevImages[this.state.nextPrevImages.length - 1] !== listingSmallUrls[listingSmallUrls.length - 1]) {
       this.setState({
         nextPrevImages: this.state.nextPrevImages.map((x, i) => {
