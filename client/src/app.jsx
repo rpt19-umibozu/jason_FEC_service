@@ -12,7 +12,7 @@ class App extends React.Component {
     this.state = {
       navBar: NavBar,
       photoGallery: PhotoGallery,
-      carousel: Carousel,
+      carousel: Empty,
       currentListing: [],
       is_Favorite: false,
       currentPhotoUrl: null,
@@ -31,7 +31,6 @@ class App extends React.Component {
       console.log('target', e.target);
       console.log('this', this);
         this.setState({
-          photoGallery: Empty,
           carousel: Carousel
         });
     }
@@ -264,7 +263,7 @@ class App extends React.Component {
     return (
       <div id="photoGalleryService">
         <this.state.navBar handleSearchBar={this.handleSearchBar.bind(this)}/>
-        <this.state.photoGallery state={this.state}/>
+        <this.state.photoGallery state={this.state} handleViewPhotos={this.handleViewPhotos.bind(this)}/>
         <this.state.carousel state={this.state} handleExit={this.handleExit.bind(this)} handleNextPrevClick={this.handleNextPrevClick.bind(this)}/>
       </div>
     )
@@ -272,5 +271,3 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App/>, document.getElementById('app'));
-
-exports.app = class App {};

@@ -1,7 +1,6 @@
 const {defaults} = require('jest-config');
 
 module.exports = {
-  // transformIgnorePatterns: [`/node_modules/(?!${esModules})`]
   verbose: true,
   coveragePathIgnorePatterns: [
     "/node_modules/"
@@ -19,7 +18,7 @@ module.exports = {
     "^.+\\.(js|jsx)$": "babel-jest",
     ".+\\.(css|styl|less|sass|scss)$": "<rootDir>/node_modules/jest-css-modules-transform"
   },
-  setupFilesAfterEnv: ["<rootDir>/spec/client/app.test.jsx"],
+  setupFilesAfterEnv: ["<rootDir>/spec/app.test.js"],
   setupFiles: [
     "<rootDir>setup.js"
   ],
