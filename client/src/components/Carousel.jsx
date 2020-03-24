@@ -11,9 +11,9 @@ class Carousel extends React.Component {
       <div id="carouselContainer">
         <img onClick={this.props.handleExit.bind(this)} src="https://fec-photos.s3-us-west-1.amazonaws.com/otherPics/carouselX.png" alt="carousel exit button" id="carouselExitButton"/>
         <div style={{float:'left'}}>
-        <img src="https://fec-photos.s3-us-west-1.amazonaws.com/otherPics/carouselLeft.png" alt="carousel left button" id="carouselLeftButton"/>
+        <img src="https://fec-photos.s3-us-west-1.amazonaws.com/otherPics/carouselLeft.png" alt="carousel left button" id="carouselLeftButton" onClick={this.props.handleLeftClick}/>
         <img src={`${this.props.state.currentPhotoUrl}`} alt="currently selected carousel photo" id="currentCarouselPhoto"/>
-        <img src="https://fec-photos.s3-us-west-1.amazonaws.com/otherPics/carouselRight.png" alt="carousel right button" id="carouselRightButton"/>
+        <img src="https://fec-photos.s3-us-west-1.amazonaws.com/otherPics/carouselRight.png" alt="carousel right button" id="carouselRightButton" onClick={this.props.handleRightClick}/>
         </div>
           <div id="prevAndNextImagesContainer">
             <img src={this.props.state.nextPrevImages[0]} alt='preview of previous and next images in carousel' className='nextPrevImages' onClick={this.props.handleNextPrevClick} style={{border:`${this.props.state.nextPrevBorders[0]}`, opacity:`${this.props.state.nextPrevOpacities[0]}`}} id="0"/>
