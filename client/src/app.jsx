@@ -268,6 +268,8 @@ class App extends React.Component {
     this.setState({
       carousel: Empty,
       photoGallery: PhotoGallery,
+      currentPhotoUrl: this.state.currentListing.photo1_a,
+      currentPhotoCaption: this.state.currentListing.photo1_caption,
       currentPhotoIndexInListing: 1,
       nextPrevImages: [this.state.currentListing.photo1_b, this.state.currentListing.photo2_b, this.state.currentListing.photo3_b, this.state.currentListing.photo4_b]
     });
