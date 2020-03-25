@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import NavBar from './components/NavBar.jsx';
 import PhotoGallery from './components/PhotoGallery.jsx';
@@ -394,4 +393,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App/>, document.getElementById('app'));
+export default App;
