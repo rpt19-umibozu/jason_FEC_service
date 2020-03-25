@@ -1,6 +1,7 @@
 const {defaults} = require('jest-config');
 
 module.exports = {
+  // transformIgnorePatterns: [`/node_modules/(?!${esModules})`]
   verbose: true,
   coveragePathIgnorePatterns: [
     "/node_modules/"
