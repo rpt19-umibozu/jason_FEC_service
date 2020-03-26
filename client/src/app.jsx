@@ -282,124 +282,85 @@ class App extends React.Component {
 
   handleLeftClick(e) {
     e.preventDefault();
-    let url = this.state.currentPhotoUrl;
-    let urlSplit = url.split('/');
-    let file = urlSplit.pop();
-    file = file.split('');
-    file.splice(-9, 5, 'Small').join('');
-    urlSplit.push(file.join(''));
-    let smallUrl = urlSplit.join('/');
-    console.log('smallUrl', smallUrl);
-    let nextPrevIndex = this.state.nextPrevImages.indexOf(smallUrl) - 1;
-    console.log('nextPrevIndex', nextPrevIndex);
-    let $nextPrevPic = $(`#${nextPrevIndex}`)[0];
-    console.log('$nextPrevPic', $nextPrevPic);
-    if ($nextPrevPic) {
-      $nextPrevPic.click();
+    let photoNumber = this.state.currentPhotoIndexInListing;
+    let max = this.state.numOfCurrentListingPhotos;
+    if (photoNumber !== 1) {
+      this.setState({
+        currentPhotoUrl: this.state.currentListing[`photo${photoNumber - 1}_a`],
+        currentPhotoIndexInListing: --this.state.currentPhotoIndexInListing,
+        currentPhotoCaption: this.state.currentListing[`photo${this.state.currentPhotoIndexInListing}_caption`]
+      })
+    }
+    if (photoNumber === max) {
+      this.setState({
+        nextPrevBorders: ['none', 'none', '2px solid #404040', 'none'],
+        nextPrevOpacities: ['70%', '70%', '100%', '70%']
+      })
+    } else if (photoNumber < max && photoNumber - 3 >= 1) {
+      this.setState({
+        nextPrevImages: [this.state.currentListing[`photo${photoNumber - 3}_b`], this.state.currentListing[`photo${photoNumber - 2}_b`], this.state.currentListing[`photo${photoNumber - 1}_b`], this.state.currentListing[`photo${photoNumber}_b`]]
+      })
+    } else {
+      this.setState((prevState) => {
+        return {
+          nextPrevBorders: ['none', 'none', 'none', 'none'].map((x, i) => {
+            if (i === prevState.nextPrevBorders.indexOf('2px solid #404040') - 1 || (prevState.nextPrevBorders.indexOf('2px solid #404040') === 0 && i === 0)) {
+              return '2px solid #404040';
+            } else {
+              return x;
+            }
+          }),
+          nextPrevOpacities: ['70%', '70%', '70%', '70%'].map((x, i) => {
+            if (i === prevState.nextPrevOpacities.indexOf('100%') - 1 || (prevState.nextPrevOpacities.indexOf('100%') === 0 && i === 0)) {
+              return '100%';
+            } else {
+              return x;
+            }
+          })
+        }
+      })
     }
   }
 
   handleRightClick(e) {
-    let listingId = this.state.currentListing.listing_id;
-    if (listingId === 10001) {
-      e.preventDefault();
-      let url = this.state.currentPhotoUrl;
-      console.log('url', url);
-      let urlSplit = url.split('/');
-      let file = urlSplit.pop();
-      file = file.split('');
-      let num = Number(file[file.length - 11] + file[file.length - 10]);
-      console.log('new file', file);
-      console.log('new num', num)
-      file.splice(-9, 5, 'Small').join('');
-      let largeSplit = urlSplit.slice();
-      urlSplit.push(file.join(''));
-      console.log('file', file)
-      file.splice(-5, 1, 'Large').join('');
-      largeSplit.push(file.join(''));
-      let smallUrl = urlSplit.join('/');
-      let largeUrl = largeSplit.join('/');
-      console.log('largeUrl', largeUrl);
-      console.log('smallUrl', smallUrl);
-      let nextPrevIndex = this.state.nextPrevImages.indexOf(smallUrl) + 1;
-      console.log('nextPrevIndex', nextPrevIndex);
-      let $nextPrevPic = $(`#${nextPrevIndex}`)[0];
-      console.log('$nextPrevPic', $nextPrevPic);
-      console.log('NUM', num)
-      if (num === this.state.numOfCurrentListingPhotos) {
-        return;
-      }
-      if ($nextPrevPic) {
-        $nextPrevPic.click();
-      } else {
-        console.log('new smallUrl', smallUrl);
-        console.log('largeUrl', largeUrl);
-        if (num < 9) {
-          largeUrl = `https://fec-photos.s3-us-west-1.amazonaws.com/otherPics/mainPic0${num + 1}Large.jpg`
-        } else {
-          largeUrl = `https://fec-photos.s3-us-west-1.amazonaws.com/otherPics/mainPic${num + 1}Large.jpg`
-        }
-        this.setState({
-          nextPrevImages: [this.state.currentListing[`photo${num - 2}_b`], this.state.currentListing[`photo${num - 1}_b`], this.state.currentListing[`photo${num}_b`], this.state.currentListing[`photo${num + 1}_b`]],
-          currentPhotoUrl: largeUrl,
-          currentPhotoIndexInListing: num + 1,
-          currentPhotoCaption: this.state.currentListing[`photo${num + 1}_caption`],
-          nextPrevBorders: ['none', 'none', 'none', '2px solid #404040'],
-          nextPrevOpacities: ['70%', '70%', '70%', '100%']
-        });
-      }
+    e.preventDefault();
+    let photoNumber = this.state.currentPhotoIndexInListing;
+    let max = this.state.numOfCurrentListingPhotos;
+    if (photoNumber !== max) {
+      this.setState({
+        currentPhotoUrl: this.state.currentListing[`photo${photoNumber + 1}_a`],
+        currentPhotoIndexInListing: ++this.state.currentPhotoIndexInListing,
+        currentPhotoCaption: this.state.currentListing[`photo${this.state.currentPhotoIndexInListing}_caption`]
+      })
+    }
+    if (photoNumber === 1) {
+      this.setState({
+        nextPrevBorders: ['none', '2px solid #404040', 'none', 'none'],
+        nextPrevOpacities: ['70%', '100%', '70%', '70%']
+      })
+    } else if (photoNumber > 1 && photoNumber + 3 <= max) {
+      this.setState({
+        nextPrevImages: [this.state.currentListing[`photo${photoNumber}_b`], this.state.currentListing[`photo${photoNumber + 1}_b`], this.state.currentListing[`photo${photoNumber + 2}_b`], this.state.currentListing[`photo${photoNumber + 3}_b`]]
+      })
     } else {
-      console.log('here')
-      let photoNumber = this.state.currentPhotoIndexInListing;
-      let max = this.state.numOfCurrentListingPhotos;
-      if (photoNumber !== max) {
-        this.setState({
-          currentPhotoUrl: this.state.currentListing[`photo${photoNumber + 1}_a`]
-        })
-        if (photoNumber === 1) {
-          this.setState({
-            currentPhotoIndexInListing: ++this.state.currentPhotoIndexInListing,
-            currentPhotoCaption: this.state.currentListing[`photo${this.state.currentPhotoIndexInListing}_caption`]
-          });
-        } else {
-          this.setState({
-            currentPhotoIndexInListing: ++this.state.currentPhotoIndexInListing,
-            currentPhotoCaption: this.state.currentListing[`photo${this.state.currentPhotoIndexInListing}_caption`]
-          });
+      this.setState((prevState) => {
+        return {
+          nextPrevBorders: ['none', 'none', 'none', 'none'].map((x, i) => {
+            if (i === prevState.nextPrevBorders.indexOf('2px solid #404040') + 1 || (prevState.nextPrevBorders.indexOf('2px solid #404040') === 3 && i === 3)) {
+              return '2px solid #404040';
+            } else {
+              return x;
+            }
+          }),
+          nextPrevOpacities: ['70%', '70%', '70%', '70%'].map((x, i) => {
+            if (i === prevState.nextPrevOpacities.indexOf('100%') + 1 || (prevState.nextPrevOpacities.indexOf('100%') === 3 && i === 3)) {
+              return '100%';
+            } else {
+              return x;
+            }
+          })
         }
-        console.log('photoNumber', photoNumber);
-        console.log('max', max);
-        console.log('this.state.currentPhotoIndexInListing  ', this.state.currentPhotoIndexInListing)
-      }
-      if (photoNumber === 1) {
-        this.setState({
-          nextPrevBorders: ['none', '2px solid #404040', 'none', 'none'],
-          nextPrevOpacities: ['70%', '100%', '70%', '70%']
-        })
-      } else if (photoNumber > 1 && photoNumber + 3 <= max) {
-        this.setState({
-          nextPrevImages: [this.state.currentListing[`photo${photoNumber}_b`], this.state.currentListing[`photo${photoNumber + 1}_b`], this.state.currentListing[`photo${photoNumber + 2}_b`], this.state.currentListing[`photo${photoNumber + 3}_b`]]
-        })
-      } else {
-        this.setState((prevState) => {
-          return {
-            nextPrevBorders: ['none', 'none', 'none', 'none'].map((x, i) => {
-              if (i === prevState.nextPrevBorders.indexOf('2px solid #404040') + 1 || (prevState.nextPrevBorders.indexOf('2px solid #404040') === 3 && i === 3)) {
-                return '2px solid #404040';
-              } else {
-                return x;
-              }
-            }),
-            nextPrevOpacities: ['70%', '70%', '70%', '70%'].map((x, i) => {
-              if (i === prevState.nextPrevOpacities.indexOf('100%') + 1 || (prevState.nextPrevOpacities.indexOf('100%') === 3 && i === 3)) {
-                return '100%';
-              } else {
-                return x;
-              }
-            })
-          }
-        })
-      }
+      })
     }
   }
 
