@@ -353,6 +353,9 @@ class App extends React.Component {
       let photoNumber = this.state.currentPhotoIndexInListing;
       let max = this.state.numOfCurrentListingPhotos;
       if (photoNumber !== max) {
+        this.setState({
+          currentPhotoUrl: this.state.currentListing[`photo${photoNumber + 1}_a`]
+        })
         if (photoNumber === 1) {
           this.setState({
             currentPhotoIndexInListing: ++this.state.currentPhotoIndexInListing,
@@ -367,10 +370,6 @@ class App extends React.Component {
         console.log('photoNumber', photoNumber);
         console.log('max', max);
         console.log('this.state.currentPhotoIndexInListing  ', this.state.currentPhotoIndexInListing)
-        // this.setState({
-        //     currentPhotoIndexInListing: this.state.currentPhotoIndexInListing,
-        //     currentPhotoCaption: this.state.currentListing[`photo${this.state.currentPhotoIndexInListing}_caption`]
-        // });
       }
       if (photoNumber === 1) {
         this.setState({
@@ -400,11 +399,6 @@ class App extends React.Component {
             })
           }
         })
-        // if (photoNumber === max) {
-        //   this.setState({
-
-        //   })
-        // }
       }
     }
   }
