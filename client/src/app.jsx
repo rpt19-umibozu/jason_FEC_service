@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import NavBar from './components/NavBar.jsx';
 import PhotoGallery from './components/PhotoGallery.jsx';
@@ -25,19 +24,20 @@ class App extends React.Component {
       nextPrevOpacities: ['100%', '70%', '70%', '70%']
     }
 
-    this.handleViewPhotos = (e) => {
-      e.preventDefault;
-      console.log('clicked');
-      console.log('target', e.target);
-      console.log('this', this);
-        this.setState({
-          carousel: Carousel
-        });
-    }
 
   }
 
-  dupGetNumOfListingPhotos (listing) {
+  handleViewPhotos(e) {
+    e.preventDefault;
+    console.log('clicked');
+    console.log('target', e.target);
+    console.log('this', this);
+    this.setState({
+      carousel: Carousel
+    });
+  }
+
+  dupGetNumOfListingPhotos(listing) {
     let dupPhotosArray = Object.keys(listing).slice(4, -3);
     let dupListingSmallUrls = [];
     let count = 0;
@@ -54,7 +54,7 @@ class App extends React.Component {
 
   componentDidMount() {
     let url = window.location.href;
-    let id = url.split('/').pop();
+    let id = url.split('/').pop() || 10001;
     let data = {listingId: id};
     console.log(data)
     console.log('id', id);
@@ -394,4 +394,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App/>, document.getElementById('app'));
+export default App;
