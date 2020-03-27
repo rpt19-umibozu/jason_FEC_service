@@ -88,8 +88,6 @@ class App extends React.Component {
     let photoNumber = this.state.currentPhotoIndexInListing;
     let max = this.state.numOfCurrentListingPhotos;
     let id = Number(e.target.id);
-    console.log('id', id);
-    console.log('photoNumber', photoNumber);
     let $rightButton = $('#carouselRightButton')[0];
     let $leftButton = $('#carouselLeftButton')[0];
     if (photoNumber === 1) {
