@@ -85,230 +85,58 @@ class App extends React.Component {
 
   handleNextPrevClick(e) {
     e.preventDefault();
-    // let listingId = this.state.currentListing.listing_id;
-    // if (listingId === 10001) {
-    //   let src = e.target.src;
-    //   let srcSplit = src.split('/');
-    //   let file = srcSplit.pop();
-    //   file = file.split('');
-    //   file.splice(-9, 5, 'Large').join('');
-    //   srcSplit.push(file.join(''));
-    //   src = srcSplit.join('/');
-    //   let num = src.split('/').pop();
-    //   num = num.split('').slice(-11, -9).join('');
-    //   let id = e.target.id;
-    //   let photosArray = Object.keys(this.state.currentListing).slice(4, -3);
-    //   let listingSmallUrls = [];
-    //   let getNumOfListingPhotos = () => {
-    //     let count = 0;
-    //     let listing = this.state.currentListing;
-    //     console.log('listing', listing);
-    //     for (let key of photosArray) {
-    //       if (listing[key]) {
-    //         if (key.split('').slice(-1) == 'b') {
-    //           listingSmallUrls.push(listing[key])
-    //         }
-    //         count++
-    //       }
-    //     }
-    //     return count;
-    //   }
-    //   let numOfListingPhotos = Math.ceil(getNumOfListingPhotos() / 3);
-    //   let index = listingSmallUrls.indexOf(e.target.src);
-    //   this.setState({
-    //     currentPhotoIndexInListing: index + 1
-    //   });
-    //   let nextPrevIndex = this.state.nextPrevImages.indexOf(e.target.src);
-    //   console.log('nextPrevIndex', nextPrevIndex);
-    //   console.log('index', index);
-    //   if (nextPrevIndex > 1 && this.state.nextPrevImages[this.state.nextPrevImages.length - 1] !== listingSmallUrls[listingSmallUrls.length - 1]) {
-    //     this.setState({
-    //       nextPrevImages: this.state.nextPrevImages.map((x, i) => {
-    //         if (i < 3) {
-    //           return this.state.nextPrevImages[i + 1];
-    //         } else {
-    //           if (nextPrevIndex === 2) {
-    //             return listingSmallUrls[index + 2];
-    //           } else {
-    //             return listingSmallUrls[index + 1];
-    //           }
-    //         }
-    //       }),
-    //       currentPhotoCaption: this.state.currentListing[`photo${Number(num)}_caption`]
-    //     });
-    //     if (nextPrevIndex === 2) {
-    //       if (index === listingSmallUrls.length - 2) {
-    //         this.setState({
-    //           nextPrevBorders: ['none', 'none', '2px solid #404040', 'none'],
-    //           nextPrevOpacities: ['70%', '70%', '100%', '70%'],
-    //           currentPhotoUrl: src,
-    //           s3PhotoBucketNumber: num,
-    //           currentPhotoCaption: this.state.currentListing[`photo${Number(num)}_caption`]
-    //         });
-    //       } else {
-    //         this.setState({
-    //           nextPrevBorders: ['none', '2px solid #404040', 'none', 'none'],
-    //           nextPrevOpacities: ['70%', '100%', '70%', '70%'],
-    //           currentPhotoUrl: src,
-    //           s3PhotoBucketNumber: num,
-    //           currentPhotoCaption: this.state.currentListing[`photo${Number(num)}_caption`]
-    //         });
-    //       }
-    //     } else if (nextPrevIndex === 3) {
-    //       if (index === listingSmallUrls.length - 1) {
-    //         this.setState({
-    //           nextPrevBorders: ['none', 'none', 'none', '2px solid #404040'],
-    //           nextPrevOpacities: ['70%', '70%', '70%', '100%'],
-    //           currentPhotoUrl: src,
-    //           s3PhotoBucketNumber: num,
-    //           currentPhotoCaption: this.state.currentListing[`photo${Number(num)}_caption`]
-    //         });
-    //       } else {
-    //         this.setState({
-    //           nextPrevBorders: ['none', 'none', '2px solid #404040', 'none'],
-    //           nextPrevOpacities: ['70%', '70%', '100%', '70%'],
-    //           currentPhotoUrl: src,
-    //           s3PhotoBucketNumber: num,
-    //           currentPhotoCaption: this.state.currentListing[`photo${Number(num)}_caption`]
-    //         });
-    //       }
-    //     }
-    //   } else if (nextPrevIndex < 2 && this.state.nextPrevImages[0] !== listingSmallUrls[0]) {
-    //     this.setState({
-    //       nextPrevImages: this.state.nextPrevImages.map((x, i) => {
-    //         if (i > 0) {
-    //           return this.state.nextPrevImages[i - 1];
-    //         } else {
-    //           if (nextPrevIndex === 1) {
-    //             return listingSmallUrls[index - 2];
-    //           }
-    //           return listingSmallUrls[index - 1];
-    //         }
-    //       })
-    //     });
-    //     if (nextPrevIndex === 1) {
-    //       this.setState({
-    //         nextPrevBorders: ['none', 'none', '2px solid #404040', 'none'],
-    //         nextPrevOpacities: ['70%', '70%', '100%', '70%'],
-    //         currentPhotoUrl: src,
-    //         s3PhotoBucketNumber: num,
-    //         currentPhotoCaption: this.state.currentListing[`photo${Number(num)}_caption`]
-    //       });
-    //     } else {
-    //       this.setState({
-    //         nextPrevBorders: ['none', '2px solid #404040', 'none', 'none'],
-    //         nextPrevOpacities: ['70%', '100%', '70%', '70%'],
-    //         currentPhotoUrl: src,
-    //         s3PhotoBucketNumber: num,
-    //         currentPhotoCaption: this.state.currentListing[`photo${Number(num)}_caption`]
-    //       });
-    //     }
-    //   } else if (nextPrevIndex === 0 && this.state.nextPrevImages[0] === listingSmallUrls[0]) {
-    //     this.setState({
-    //       nextPrevBorders: ['2px solid #404040', 'none', 'none', 'none'],
-    //       nextPrevOpacities: ['100%', '70%', '70%', '70%'],
-    //       currentPhotoUrl: src,
-    //       s3PhotoBucketNumber: num,
-    //       currentPhotoCaption: this.state.currentListing[`photo${Number(num)}_caption`]
-    //     });
-    //   } else if (nextPrevIndex === 1 && this.state.nextPrevImages[0] === listingSmallUrls[0]) {
-    //     this.setState({
-    //       nextPrevBorders: ['none', '2px solid #404040', 'none', 'none'],
-    //       nextPrevOpacities: ['70%', '100%', '70%', '70%'],
-    //       currentPhotoUrl: src,
-    //       s3PhotoBucketNumber: num,
-    //       currentPhotoCaption: this.state.currentListing[`photo${Number(num)}_caption`]
-    //     });
-    //   } else if (nextPrevIndex === 2 && this.state.nextPrevImages[this.state.nextPrevImages.length - 1] === listingSmallUrls[listingSmallUrls.length - 1]) {
-    //     this.setState({
-    //       nextPrevBorders: ['none', 'none', '2px solid #404040', 'none'],
-    //       nextPrevOpacities: ['70%', '70%', '100%', '70%'],
-    //       currentPhotoUrl: src,
-    //       s3PhotoBucketNumber: num,
-    //       currentPhotoCaption: this.state.currentListing[`photo${Number(num)}_caption`]
-    //     });
-    //   } else if (nextPrevIndex === 3 && this.state.nextPrevImages[this.state.nextPrevImages.length - 1] === listingSmallUrls[listingSmallUrls.length - 1]) {
-    //     this.setState({
-    //       nextPrevBorders: ['none', 'none', 'none', '2px solid #404040'],
-    //       nextPrevOpacities: ['70%', '70%', '70%', '100%'],
-    //       currentPhotoUrl: src,
-    //       s3PhotoBucketNumber: num,
-    //       currentPhotoCaption: this.state.currentListing[`photo${Number(num)}_caption`]
-    //     });
-    //   } else {
-    //     let newBorders = ['none', 'none', 'none', 'none'].map((x, i) => {
-    //       if (i == id - 1) {
-    //         return '2px solid #404040';
-    //       } else {
-    //         return x;
-    //       }
-    //     });
-    //     let newOpacities = ['70%', '70%', '70%', '70%'].map((x, i) => {
-    //       if (i == id - 1) {
-    //         return '100%';
-    //       } else {
-    //         return x;
-    //       }
-    //     });
-    //     this.setState({
-    //       nextPrevBorders: newBorders,
-    //       nextPrevOpacities: newOpacities,
-    //       currentPhotoUrl: src,
-    //       s3PhotoBucketNumber: num,
-    //       currentPhotoCaption: this.state.currentListing[`photo${Number(num)}_caption`]
-    //     });
-    //   }
-    // } else {
-      console.log('start over');
-      let photoNumber = this.state.currentPhotoIndexInListing;
-      let max = this.state.numOfCurrentListingPhotos;
-      let id = Number(e.target.id);
-      console.log('id', id);
-      console.log('photoNumber', photoNumber);
-      let $rightButton = $('#carouselRightButton')[0];
-      let $leftButton = $('#carouselLeftButton')[0];
-      if (photoNumber === 1) {
-        if (id === 1) {
-          $rightButton.click();
-        } else if (id === 2) {
-          $rightButton.click();
-          $rightButton.click();
-        } else {
+    let photoNumber = this.state.currentPhotoIndexInListing;
+    let max = this.state.numOfCurrentListingPhotos;
+    let id = Number(e.target.id);
+    console.log('id', id);
+    console.log('photoNumber', photoNumber);
+    let $rightButton = $('#carouselRightButton')[0];
+    let $leftButton = $('#carouselLeftButton')[0];
+    if (photoNumber === 1) {
+      if (id === 1) {
+        $rightButton.click();
+      } else if (id === 2) {
+        $rightButton.click();
+        $rightButton.click();
+      } else {
+        if (id !== 0) {
           $rightButton.click();
           $rightButton.click();
           $rightButton.click();
         }
-      } else if (photoNumber === max) {
-        if (id === 2) {
+      }
+    } else if (photoNumber === max) {
+      if (id === 2) {
+        $leftButton.click();
+      } else if (id === 1) {
+        console.log('clicking twice')
+        $leftButton.click();
+        $leftButton.click();
+      } else {
+        if (id !== 3) {
           $leftButton.click();
-        } else if (id === 1) {
-          console.log('clicking twice')
           $leftButton.click();
           $leftButton.click();
-        } else {
+        }
+      }
+    } else {
+      let current = this.state.nextPrevOpacities.indexOf('100%');
+      if (current > id) {
+        if (current - id === 2) {
           $leftButton.click();
           $leftButton.click();
+        } else if (current - id === 1) {
           $leftButton.click();
         }
       } else {
-        let current = this.state.nextPrevOpacities.indexOf('100%');
-        if (current > id) {
-          if (current - id === 2) {
-            $leftButton.click();
-            $leftButton.click();
-          } else if (current - id === 1) {
-            $leftButton.click();
-          }
-        } else {
-          if (id - current === 1) {
-            $rightButton.click();
-          } else if (id - current === 2) {
-            $rightButton.click();
-            $rightButton.click();
-          }
+        if (id - current === 1) {
+          $rightButton.click();
+        } else if (id - current === 2) {
+          $rightButton.click();
+          $rightButton.click();
         }
       }
-    // }
+    }
   };
 
   handleSearchBar (e) {
