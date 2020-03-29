@@ -1,5 +1,5 @@
 import React from 'react';
-
+font
 const NavBar = (props) => {
   return (
     <div style={{padding:'8px 0 2px 20px'}}>

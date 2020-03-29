@@ -25,18 +25,15 @@ class App extends React.Component {
       nextPrevOpacities: ['100%', '70%', '70%', '70%']
     }
 
-    this.handleViewPhotos = (e) => {
-      e.preventDefault;
-      console.log('clicked');
-      console.log('target', e.target);
-      console.log('this', this);
-        this.setState({
-          carousel: Carousel,
-          nextPrevBorders: ['2px solid #404040', 'none', 'none', 'none'],
-          nextPrevOpacities: ['100%', '70%', '70%', '70%']
-        });
-    }
+  }
 
+  handleViewPhotos (e) {
+    e.preventDefault;
+    this.setState({
+      carousel: Carousel,
+      nextPrevBorders: ['2px solid #404040', 'none', 'none', 'none'],
+      nextPrevOpacities: ['100%', '70%', '70%', '70%']
+    });
   }
 
   dupGetNumOfListingPhotos (listing) {
@@ -214,12 +211,6 @@ class App extends React.Component {
         currentPhotoCaption: this.state.currentListing[`photo${this.state.currentPhotoIndexInListing}_caption`],
       })
     }
-    // if (photoNumber === 1) {
-    //   this.setState({
-    //     nextPrevBorders: ['none', '2px solid #404040', 'none', 'none'],
-    //     nextPrevOpacities: ['70%', '100%', '70%', '70%']
-    //   })
-    // } else
     if (photoNumber > 1 && photoNumber + 3 <= max) {
       this.setState({
         nextPrevImages: [this.state.currentListing[`photo${photoNumber}_b`], this.state.currentListing[`photo${photoNumber + 1}_b`], this.state.currentListing[`photo${photoNumber + 2}_b`], this.state.currentListing[`photo${photoNumber + 3}_b`]],
@@ -250,56 +241,41 @@ class App extends React.Component {
 
   handlePhotoClick(e) {
     e.preventDefault();
-    let listingId = this.state.currentListing.listing_id;
-    if (listingId === 10001) {
-      let url = e.target.style.backgroundImage.split(`"`)[1];
-      console.log('url', url);
-      let id = Number(e.target.id.split('').pop());
-      console.log('id', id);
-      if (id < 5) {
-        this.setState({
-          carousel: Carousel,
-          currentPhotoUrl: url,
-          currentPhotoIndexInListing: id,
-          currentPhotoCaption: this.state.currentListing[`photo${id}_caption`],
-          nextPrevBorders: ['none', 'none', 'none', 'none'].map((x, i) => {
-            if (i === (id - 1)) {
-              return '2px solid #404040';
-            } else {
-              return x;
-            }
-          }),
-          nextPrevOpacities: ['70%', '70%', '70%', '70%'].map((x, i) => {
-            if (i === (id - 1)) {
-              return '100%';
-            } else {
-              return x;
-            }
-          })
-        });
-      } else if (id === 5) {
-        this.setState({
-          nextPrevImages: [this.state.currentListing.photo2_b, this.state.currentListing.photo3_b, this.state.currentListing.photo4_b, this.state.currentListing.photo5_b],
-          carousel: Carousel,
-          currentPhotoUrl: url,
-          currentPhotoIndexInListing: id,
-          currentPhotoCaption: this.state.currentListing[`photo${id}_caption`],
-          nextPrevBorders: ['none', 'none', 'none', '2px solid #404040'],
-          nextPrevOpacities: ['70%', '70%', '70%', '100%']
-        });
-      }
-    } else {
-      let photoNumber = this.state.currentPhotoIndexInListing;
-      let max = this.state.numOfCurrentListingPhotos;
-      console.log('start over handle photo click');
-      if (photoNumber === 1) {
-        this.setState({
-          nextPrevBorders: ['2px solid #404040', 'none', 'none', 'none'],
-          nextPrevOpacities: ['100%', '70%', '70%', '70%']
+    let url = e.target.style.backgroundImage.split(`"`)[1];
+    let id = Number(e.target.id.split('').pop());
+    if (id < 5) {
+      this.setState({
+        carousel: Carousel,
+        currentPhotoUrl: url,
+        currentPhotoIndexInListing: id,
+        currentPhotoCaption: this.state.currentListing[`photo${id}_caption`],
+        nextPrevBorders: ['none', 'none', 'none', 'none'].map((x, i) => {
+          if (i === (id - 1)) {
+            return '2px solid #404040';
+          } else {
+            return x;
+          }
+        }),
+        nextPrevOpacities: ['70%', '70%', '70%', '70%'].map((x, i) => {
+          if (i === (id - 1)) {
+            return '100%';
+          } else {
+            return x;
+          }
         })
-      }
+      });
+    } else if (id === 5) {
+      this.setState({
+        nextPrevImages: [this.state.currentListing.photo2_b, this.state.currentListing.photo3_b, this.state.currentListing.photo4_b, this.state.currentListing.photo5_b],
+        carousel: Carousel,
+        currentPhotoUrl: url,
+        currentPhotoIndexInListing: id,
+        currentPhotoCaption: this.state.currentListing[`photo${id}_caption`],
+        nextPrevBorders: ['none', 'none', 'none', '2px solid #404040'],
+        nextPrevOpacities: ['70%', '70%', '70%', '100%']
+      });
     }
-  }
+  };
 
   render() {
     return (

@@ -18,7 +18,6 @@ app.listen(port, () => {
 
 //get product by unique identifier using req object query property
 app.get('/listing-info', (req, res) => {
-  console.log('inside listing-info');
   let id = req.query.listingId;
   if (isNaN(Number(id))) {
     //identifier is name
@@ -45,4 +44,8 @@ app.get('/listing-info', (req, res) => {
 //reload page with product identifier in url
 app.get('/:id', (req, res) => {
   res.sendFile(fullPath);
+});
+
+app.post('/favorite', (req, res) => {
+
 });
