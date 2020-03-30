@@ -32,13 +32,20 @@ const getMainRouteNum = (id) => {
 
 const toggleFavorite = (id) => {
   return new Promise((resolve, reject) => {
-    let update_query = `UPDATE Photos SET is_fav`
-  })
-}
+    let update_query = `UPDATE Photos SET is_favorite = 1 - is_favorite WHERE listing_id=${id}`;
+    db.query(update_query, (err, results) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(results);
+    });
+  });
+};
 
 
 module.exports = {
   db,
   getMainRouteString,
-  getMainRouteNum
+  getMainRouteNum,
+  toggleFavorite
 };

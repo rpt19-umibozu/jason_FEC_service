@@ -108,3 +108,15 @@ div #carouselContainer {
   width:'100px';
   color: rgba(65, 65, 65);
 }
+
+.innerPhoto {
+  transition: .35s ease-in-out;
+}
+
+.innerPhoto:hover {
+  transform: scale(1.05);
+  -webkit-transition: .35s ease-in-out;
+  -moz-transition: .35s ease-in-out;
+  -o-transition: .35s ease-in-out;
+  transition: .35s ease-in-out;
+}

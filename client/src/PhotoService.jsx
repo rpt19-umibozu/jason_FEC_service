@@ -65,12 +65,10 @@ class PhotoService extends React.Component {
       }
     }
     let data = {listingId: id};
-    console.log(data)
-    console.log('id', id);
       $.ajax({
         method: 'GET',
         url: '/listing-info',
-        data: data,
+        data,
         dataType: 'text',
         success: (result) => {
           result = JSON.parse(result);

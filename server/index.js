@@ -5,12 +5,13 @@ const bodyParser = require('body-parser');
 const db = require('../db/index.js').db;
 const getMainRouteString = require('../db/index.js').getMainRouteString;
 const getMainRouteNum = require('../db/index.js').getMainRouteNum;
+const toggleFavorite = require('../db/index.js').toggleFavorite;
 const fullPath = '/Users/jasonjacob/Desktop/seniorProjects/jason_FEC_service/client/dist/index.html';
 
 
 app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
@@ -47,5 +48,12 @@ app.get('/:id', (req, res) => {
 });
 
 app.post('/favorite', (req, res) => {
-
+  let id = req.body.listingId;
+  toggleFavorite(id)
+  .then((results) => {
+    res.send(results);
+  })
+  .catch((err) => {
+    console.log('error', err);
+  })
 });
