@@ -12,6 +12,10 @@
     transform:scale(0.97,1.04);
 }
 
+#navBarSearchBar:focus {
+  outline: none;
+}
+
 div #carouselContainer {
   position: fixed;
   top: 0;
@@ -81,7 +85,6 @@ div #carouselContainer {
   font-stretch: ultra-condensed;
   line-height: 22px;
   opacity: 70%;
-  /* font-stretch: ultra-expanded; */
 }
 .photoGalButton {
   font-style: 'sans-serif';
@@ -119,4 +122,27 @@ div #carouselContainer {
   -moz-transition: .35s ease-in-out;
   -o-transition: .35s ease-in-out;
   transition: .35s ease-in-out;
+}
+
+#hardcodePhoto1 {
+  height: 790px;
+  width: 858px;
+}
+
+#hardcodePhoto2 {
+  height: 450px;
+  width: 858px;
+}
+
+#hardcodePhoto3 {
+  height: 410px;
+  width: 859px;
+}
+
+.photoContainer {
+  background-color: black !important;
+}
+
+.innerPhoto {
+  background-color: black;
 }
