@@ -12,6 +12,10 @@
     transform:scale(0.97,1.04);
 }
 
+#navBarSearchBar:focus {
+  outline: none;
+}
+
 div #carouselContainer {
   position: fixed;
   top: 0;

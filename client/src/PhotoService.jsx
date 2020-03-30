@@ -250,8 +250,10 @@ class PhotoService extends React.Component {
 
   handlePhotoClick(e) {
     e.preventDefault();
-    let url = e.target.style.backgroundImage.split(`"`)[1];
+    let url = e.target.src;
     let id = Number(e.target.id.split('').pop());
+    console.log('url', url);
+    console.log('id', id)
     if (id < 5) {
       this.setState({
         carousel: Carousel,
