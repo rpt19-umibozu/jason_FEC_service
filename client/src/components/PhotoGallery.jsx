@@ -79,11 +79,7 @@ class PhotoGallery extends React.Component {
   handleShare(e) {
     e.preventDefault();
     alert('Listing Shared!');
-<<<<<<< HEAD
   };
-=======
-  }
->>>>>>> master
 
   handleMouseEnter(e) {
     let id = e.target.id.split('').pop();
