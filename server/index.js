@@ -6,6 +6,7 @@ const db = require('../db/index.js').db;
 const getMainRouteString = require('../db/index.js').getMainRouteString;
 const getMainRouteNum = require('../db/index.js').getMainRouteNum;
 const toggleFavorite = require('../db/index.js').toggleFavorite;
+const recPhotos = require('../db/index.js').recPhotos;
 const fullPath = '/Users/jasonjacob/Desktop/seniorProjects/jason_FEC_service/client/dist/index.html';
 
 
@@ -15,6 +16,24 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
+});
+
+app.get('/rec-photos', (req, res) => {
+  let id = req.query.listingId;
+  recPhotos(id)
+  .then((results) => {
+    results = results[0];
+    let keys = Object.keys(results);
+    for (let key of keys) {
+      if (results[key] === null) {
+        delete results[key];
+      }
+    }
+    res.send(results);
+  })
+  .catch((err) => {
+    console.log('error', err);
+  });
 });
 
 //get product by unique identifier using req object query property.
@@ -55,5 +74,5 @@ app.post('/favorite', (req, res) => {
   })
   .catch((err) => {
     console.log('error', err);
-  })
+  });
 });

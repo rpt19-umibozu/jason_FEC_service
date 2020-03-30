@@ -27,7 +27,6 @@ class PhotoGallery extends React.Component {
   handleSaved(e) {
     e.preventDefault();
     let data = {listingId: this.props.state.currentListing.listing_id};
-    console.log('DATA', data)
     $.ajax({
       method: 'POST',
       url: '/favorite',
@@ -76,8 +75,7 @@ class PhotoGallery extends React.Component {
   handleShare(e) {
     e.preventDefault();
     alert('Listing Shared!');
-    console.log('listing id', this.props.state.currentListing.listing_id)
-  }
+  };
 
   render() {
     return (
