@@ -24,11 +24,16 @@ app.get('/rec-photos', (req, res) => {
   .then((results) => {
     results = results[0];
     let keys = Object.keys(results);
+    let newKey;
     for (let key of keys) {
       if (results[key] === null) {
         delete results[key];
+      } else {
+        newKey = key.split('_').shift();
+        results[newKey] = results[key];
+        delete results[key];
       }
-    }
+  }
     res.send(results);
   })
   .catch((err) => {
