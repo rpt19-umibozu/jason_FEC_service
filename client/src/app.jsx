@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import NavBar from './components/NavBar.jsx';
 import PhotoGallery from './components/PhotoGallery.jsx';
@@ -36,7 +35,17 @@ class App extends React.Component {
     });
   }
 
-  dupGetNumOfListingPhotos (listing) {
+  handleViewPhotos(e) {
+    e.preventDefault;
+    console.log('clicked');
+    console.log('target', e.target);
+    console.log('this', this);
+    this.setState({
+      carousel: Carousel
+    });
+  }
+
+  dupGetNumOfListingPhotos(listing) {
     let dupPhotosArray = Object.keys(listing).slice(4, -3);
     let dupListingSmallUrls = [];
     let count = 0;
@@ -288,4 +297,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App/>, document.getElementById('app'));
+export default App;
