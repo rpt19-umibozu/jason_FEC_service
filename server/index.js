@@ -16,7 +16,7 @@ app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
 
-//get product by unique identifier using req object query property
+//get product by unique identifier using req object query property.
 app.get('/listing-info', (req, res) => {
   let id = req.query.listingId;
   if (isNaN(Number(id))) {
