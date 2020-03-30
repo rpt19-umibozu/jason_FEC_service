@@ -24,7 +24,15 @@ class App extends React.Component {
       nextPrevOpacities: ['100%', '70%', '70%', '70%']
     }
 
+  }
 
+  handleViewPhotos (e) {
+    e.preventDefault;
+    this.setState({
+      carousel: Carousel,
+      nextPrevBorders: ['2px solid #404040', 'none', 'none', 'none'],
+      nextPrevOpacities: ['100%', '70%', '70%', '70%']
+    });
   }
 
   handleViewPhotos(e) {
@@ -54,8 +62,8 @@ class App extends React.Component {
 
   componentDidMount() {
     let url = window.location.href;
-    let id = url.split('/').pop() || 10001;
-    let data = {listingId: id};
+    let id = url.split('/').pop();
+    let data = {listingId: id || 10001};
     console.log(data)
     console.log('id', id);
       $.ajax({
@@ -83,176 +91,55 @@ class App extends React.Component {
 
   handleNextPrevClick(e) {
     e.preventDefault();
-    let src = e.target.src;
-    let srcSplit = src.split('/');
-    let file = srcSplit.pop();
-    file = file.split('');
-    file.splice(-9, 5, 'Large').join('');
-    srcSplit.push(file.join(''));
-    src = srcSplit.join('/');
-    let num = src.split('/').pop();
-    num = num.split('').slice(-11, -9).join('');
-    let id = e.target.id;
-    let photosArray = Object.keys(this.state.currentListing).slice(4, -3);
-    let listingSmallUrls = [];
-    let getNumOfListingPhotos = () => {
-      let count = 0;
-      let listing = this.state.currentListing;
-      console.log('listing', listing);
-      for (let key of photosArray) {
-        if (listing[key]) {
-          if (key.split('').slice(-1) == 'b') {
-            listingSmallUrls.push(listing[key])
-          }
-          count++
-        }
-      }
-      return count;
-    }
-    let numOfListingPhotos = Math.ceil(getNumOfListingPhotos() / 3);
-    let index = listingSmallUrls.indexOf(e.target.src);
-    this.setState({
-      currentPhotoIndexInListing: index + 1
-    });
-    let nextPrevIndex = this.state.nextPrevImages.indexOf(e.target.src);
-    console.log('nextPrevIndex', nextPrevIndex);
-    console.log('index', index);
-    if (nextPrevIndex > 1 && this.state.nextPrevImages[this.state.nextPrevImages.length - 1] !== listingSmallUrls[listingSmallUrls.length - 1]) {
-      this.setState({
-        nextPrevImages: this.state.nextPrevImages.map((x, i) => {
-          if (i < 3) {
-            return this.state.nextPrevImages[i + 1];
-          } else {
-            if (nextPrevIndex === 2) {
-              return listingSmallUrls[index + 2];
-            } else {
-              return listingSmallUrls[index + 1];
-            }
-          }
-        }),
-        currentPhotoCaption: this.state.currentListing[`photo${Number(num)}_caption`]
-      });
-      if (nextPrevIndex === 2) {
-        if (index === listingSmallUrls.length - 2) {
-          this.setState({
-            nextPrevBorders: ['none', 'none', '2px solid #404040', 'none'],
-            nextPrevOpacities: ['70%', '70%', '100%', '70%'],
-            currentPhotoUrl: src,
-            s3PhotoBucketNumber: num,
-            currentPhotoCaption: this.state.currentListing[`photo${Number(num)}_caption`]
-          });
-        } else {
-          this.setState({
-            nextPrevBorders: ['none', '2px solid #404040', 'none', 'none'],
-            nextPrevOpacities: ['70%', '100%', '70%', '70%'],
-            currentPhotoUrl: src,
-            s3PhotoBucketNumber: num,
-            currentPhotoCaption: this.state.currentListing[`photo${Number(num)}_caption`]
-          });
-        }
-      } else if (nextPrevIndex === 3) {
-        if (index === listingSmallUrls.length - 1) {
-          this.setState({
-            nextPrevBorders: ['none', 'none', 'none', '2px solid #404040'],
-            nextPrevOpacities: ['70%', '70%', '70%', '100%'],
-            currentPhotoUrl: src,
-            s3PhotoBucketNumber: num,
-            currentPhotoCaption: this.state.currentListing[`photo${Number(num)}_caption`]
-          });
-        } else {
-          this.setState({
-            nextPrevBorders: ['none', 'none', '2px solid #404040', 'none'],
-            nextPrevOpacities: ['70%', '70%', '100%', '70%'],
-            currentPhotoUrl: src,
-            s3PhotoBucketNumber: num,
-            currentPhotoCaption: this.state.currentListing[`photo${Number(num)}_caption`]
-          });
-        }
-      }
-    } else if (nextPrevIndex < 2 && this.state.nextPrevImages[0] !== listingSmallUrls[0]) {
-      this.setState({
-        nextPrevImages: this.state.nextPrevImages.map((x, i) => {
-          if (i > 0) {
-            return this.state.nextPrevImages[i - 1];
-          } else {
-            if (nextPrevIndex === 1) {
-              return listingSmallUrls[index - 2];
-            }
-            return listingSmallUrls[index - 1];
-          }
-        })
-      });
-      if (nextPrevIndex === 1) {
-        this.setState({
-          nextPrevBorders: ['none', 'none', '2px solid #404040', 'none'],
-          nextPrevOpacities: ['70%', '70%', '100%', '70%'],
-          currentPhotoUrl: src,
-          s3PhotoBucketNumber: num,
-          currentPhotoCaption: this.state.currentListing[`photo${Number(num)}_caption`]
-        });
+    let photoNumber = this.state.currentPhotoIndexInListing;
+    let max = this.state.numOfCurrentListingPhotos;
+    let id = Number(e.target.id);
+    let $rightButton = $('#carouselRightButton')[0];
+    let $leftButton = $('#carouselLeftButton')[0];
+    if (photoNumber === 1) {
+      if (id === 1) {
+        $rightButton.click();
+      } else if (id === 2) {
+        $rightButton.click();
+        $rightButton.click();
       } else {
-        this.setState({
-          nextPrevBorders: ['none', '2px solid #404040', 'none', 'none'],
-          nextPrevOpacities: ['70%', '100%', '70%', '70%'],
-          currentPhotoUrl: src,
-          s3PhotoBucketNumber: num,
-          currentPhotoCaption: this.state.currentListing[`photo${Number(num)}_caption`]
-        });
+        if (id !== 0) {
+          $rightButton.click();
+          $rightButton.click();
+          $rightButton.click();
+        }
       }
-    } else if (nextPrevIndex === 0 && this.state.nextPrevImages[0] === listingSmallUrls[0]) {
-      this.setState({
-        nextPrevBorders: ['2px solid #404040', 'none', 'none', 'none'],
-        nextPrevOpacities: ['100%', '70%', '70%', '70%'],
-        currentPhotoUrl: src,
-        s3PhotoBucketNumber: num,
-        currentPhotoCaption: this.state.currentListing[`photo${Number(num)}_caption`]
-      });
-    } else if (nextPrevIndex === 1 && this.state.nextPrevImages[0] === listingSmallUrls[0]) {
-      this.setState({
-        nextPrevBorders: ['none', '2px solid #404040', 'none', 'none'],
-        nextPrevOpacities: ['70%', '100%', '70%', '70%'],
-        currentPhotoUrl: src,
-        s3PhotoBucketNumber: num,
-        currentPhotoCaption: this.state.currentListing[`photo${Number(num)}_caption`]
-      });
-    } else if (nextPrevIndex === 2 && this.state.nextPrevImages[this.state.nextPrevImages.length - 1] === listingSmallUrls[listingSmallUrls.length - 1]) {
-      this.setState({
-        nextPrevBorders: ['none', 'none', '2px solid #404040', 'none'],
-        nextPrevOpacities: ['70%', '70%', '100%', '70%'],
-        currentPhotoUrl: src,
-        s3PhotoBucketNumber: num,
-        currentPhotoCaption: this.state.currentListing[`photo${Number(num)}_caption`]
-      });
-    } else if (nextPrevIndex === 3 && this.state.nextPrevImages[this.state.nextPrevImages.length - 1] === listingSmallUrls[listingSmallUrls.length - 1]) {
-      this.setState({
-        nextPrevBorders: ['none', 'none', 'none', '2px solid #404040'],
-        nextPrevOpacities: ['70%', '70%', '70%', '100%'],
-        currentPhotoUrl: src,
-        s3PhotoBucketNumber: num,
-        currentPhotoCaption: this.state.currentListing[`photo${Number(num)}_caption`]
-      });
+    } else if (photoNumber === max) {
+      if (id === 2) {
+        $leftButton.click();
+      } else if (id === 1) {
+        console.log('clicking twice')
+        $leftButton.click();
+        $leftButton.click();
+      } else {
+        if (id !== 3) {
+          $leftButton.click();
+          $leftButton.click();
+          $leftButton.click();
+        }
+      }
     } else {
-      let newBorders = ['none', 'none', 'none', 'none'].map((x, i) => {
-        if (i == id - 1) {
-          return '2px solid #404040';
-        } else {
-          return x;
+      let current = this.state.nextPrevOpacities.indexOf('100%');
+      if (current > id) {
+        if (current - id === 2) {
+          $leftButton.click();
+          $leftButton.click();
+        } else if (current - id === 1) {
+          $leftButton.click();
         }
-      });
-      let newOpacities = ['70%', '70%', '70%', '70%'].map((x, i) => {
-        if (i == id - 1) {
-          return '100%';
-        } else {
-          return x;
+      } else {
+        if (id - current === 1) {
+          $rightButton.click();
+        } else if (id - current === 2) {
+          $rightButton.click();
+          $rightButton.click();
         }
-      });
-      this.setState({
-        nextPrevBorders: newBorders,
-        nextPrevOpacities: newOpacities,
-        currentPhotoUrl: src,
-        s3PhotoBucketNumber: num,
-        currentPhotoCaption: this.state.currentListing[`photo${Number(num)}_caption`]
-      });
+      }
     }
   };
 
@@ -277,78 +164,94 @@ class App extends React.Component {
 
   handleLeftClick(e) {
     e.preventDefault();
-    let url = this.state.currentPhotoUrl;
-    let urlSplit = url.split('/');
-    let file = urlSplit.pop();
-    file = file.split('');
-    file.splice(-9, 5, 'Small').join('');
-    urlSplit.push(file.join(''));
-    let smallUrl = urlSplit.join('/');
-    console.log('smallUrl', smallUrl);
-    let nextPrevIndex = this.state.nextPrevImages.indexOf(smallUrl) - 1;
-    console.log('nextPrevIndex', nextPrevIndex);
-    let $nextPrevPic = $(`#${nextPrevIndex}`)[0];
-    console.log('$nextPrevPic', $nextPrevPic);
-    if ($nextPrevPic) {
-      $nextPrevPic.click();
+    let photoNumber = this.state.currentPhotoIndexInListing;
+    let max = this.state.numOfCurrentListingPhotos;
+    if (photoNumber !== 1) {
+      this.setState({
+        currentPhotoUrl: this.state.currentListing[`photo${photoNumber - 1}_a`],
+        currentPhotoIndexInListing: --this.state.currentPhotoIndexInListing,
+        currentPhotoCaption: this.state.currentListing[`photo${this.state.currentPhotoIndexInListing}_caption`]
+      })
+    }
+    if (photoNumber === max) {
+      this.setState({
+        nextPrevBorders: ['none', 'none', '2px solid #404040', 'none'],
+        nextPrevOpacities: ['70%', '70%', '100%', '70%']
+      })
+    } else if (photoNumber < max && photoNumber - 3 >= 1) {
+      this.setState({
+        nextPrevImages: [this.state.currentListing[`photo${photoNumber - 3}_b`], this.state.currentListing[`photo${photoNumber - 2}_b`], this.state.currentListing[`photo${photoNumber - 1}_b`], this.state.currentListing[`photo${photoNumber}_b`]],
+        nextPrevBorders: ['none', 'none', '2px solid #404040', 'none'],
+        nextPrevOpacities: ['70%', '70%', '100%', '70%']
+
+      })
+    } else {
+      this.setState((prevState) => {
+        return {
+          nextPrevBorders: ['none', 'none', 'none', 'none'].map((x, i) => {
+            if (i === prevState.nextPrevBorders.indexOf('2px solid #404040') - 1 || (prevState.nextPrevBorders.indexOf('2px solid #404040') === 0 && i === 0)) {
+              return '2px solid #404040';
+            } else {
+              return x;
+            }
+          }),
+          nextPrevOpacities: ['70%', '70%', '70%', '70%'].map((x, i) => {
+            if (i === prevState.nextPrevOpacities.indexOf('100%') - 1 || (prevState.nextPrevOpacities.indexOf('100%') === 0 && i === 0)) {
+              return '100%';
+            } else {
+              return x;
+            }
+          })
+        }
+      })
     }
   }
 
   handleRightClick(e) {
     e.preventDefault();
-    let url = this.state.currentPhotoUrl;
-    console.log('url', url);
-    let urlSplit = url.split('/');
-    let file = urlSplit.pop();
-    file = file.split('');
-    let num = Number(file[file.length - 11] + file[file.length - 10]);
-    console.log('new file', file);
-    console.log('new num', num)
-    file.splice(-9, 5, 'Small').join('');
-    let largeSplit = urlSplit.slice();
-    urlSplit.push(file.join(''));
-    console.log('file', file)
-    file.splice(-5, 1, 'Large').join('');
-    largeSplit.push(file.join(''));
-    let smallUrl = urlSplit.join('/');
-    let largeUrl = largeSplit.join('/');
-    console.log('largeUrl', largeUrl);
-    console.log('smallUrl', smallUrl);
-    let nextPrevIndex = this.state.nextPrevImages.indexOf(smallUrl) + 1;
-    console.log('nextPrevIndex', nextPrevIndex);
-    let $nextPrevPic = $(`#${nextPrevIndex}`)[0];
-    console.log('$nextPrevPic', $nextPrevPic);
-    console.log('NUM', num)
-    if (num === this.state.numOfCurrentListingPhotos) {
-      return;
-    }
-    if ($nextPrevPic) {
-      $nextPrevPic.click();
-    } else {
-      console.log('new smallUrl', smallUrl);
-      console.log('largeUrl', largeUrl);
-      if (num < 9) {
-        largeUrl = `https://fec-photos.s3-us-west-1.amazonaws.com/otherPics/mainPic0${num + 1}Large.jpg`
-      } else {
-        largeUrl = `https://fec-photos.s3-us-west-1.amazonaws.com/otherPics/mainPic${num + 1}Large.jpg`
-      }
+    console.log('ID', e.target.id)
+    console.log('before photo Url', this.state.currentPhotoUrl);
+    let photoNumber = this.state.currentPhotoIndexInListing;
+    let max = this.state.numOfCurrentListingPhotos;
+    if (photoNumber !== max) {
       this.setState({
-        nextPrevImages: [this.state.currentListing[`photo${num - 2}_b`], this.state.currentListing[`photo${num - 1}_b`], this.state.currentListing[`photo${num}_b`], this.state.currentListing[`photo${num + 1}_b`]],
-        currentPhotoUrl: largeUrl,
-        currentPhotoIndexInListing: num + 1,
-        currentPhotoCaption: this.state.currentListing[`photo${num + 1}_caption`],
-        nextPrevBorders: ['none', 'none', 'none', '2px solid #404040'],
-        nextPrevOpacities: ['70%', '70%', '70%', '100%']
-      });
+        currentPhotoUrl: this.state.currentListing[`photo${photoNumber + 1}_a`],
+        currentPhotoIndexInListing: ++this.state.currentPhotoIndexInListing,
+        currentPhotoCaption: this.state.currentListing[`photo${this.state.currentPhotoIndexInListing}_caption`],
+      })
+    }
+    if (photoNumber > 1 && photoNumber + 3 <= max) {
+      this.setState({
+        nextPrevImages: [this.state.currentListing[`photo${photoNumber}_b`], this.state.currentListing[`photo${photoNumber + 1}_b`], this.state.currentListing[`photo${photoNumber + 2}_b`], this.state.currentListing[`photo${photoNumber + 3}_b`]],
+        nextPrevBorders: ['none', '2px solid #404040', 'none', 'none'],
+        nextPrevOpacities: ['70%', '100%', '70%', '70%']
+      })
+    } else {
+      this.setState((prevState) => {
+        return {
+          nextPrevBorders: ['none', 'none', 'none', 'none'].map((x, i) => {
+            if (i === prevState.nextPrevBorders.indexOf('2px solid #404040') + 1 || (prevState.nextPrevBorders.indexOf('2px solid #404040') === 3 && i === 3)) {
+              return '2px solid #404040';
+            } else {
+              return x;
+            }
+          }),
+          nextPrevOpacities: ['70%', '70%', '70%', '70%'].map((x, i) => {
+            if (i === prevState.nextPrevOpacities.indexOf('100%') + 1 || (prevState.nextPrevOpacities.indexOf('100%') === 3 && i === 3)) {
+              return '100%';
+            } else {
+              return x;
+            }
+          })
+        }
+      })
     }
   }
 
   handlePhotoClick(e) {
     e.preventDefault();
     let url = e.target.style.backgroundImage.split(`"`)[1];
-    console.log('url', url);
     let id = Number(e.target.id.split('').pop());
-    console.log('id', id);
     if (id < 5) {
       this.setState({
         carousel: Carousel,
@@ -381,7 +284,7 @@ class App extends React.Component {
         nextPrevOpacities: ['70%', '70%', '70%', '100%']
       });
     }
-  }
+  };
 
   render() {
     return (
