@@ -1,5 +1,5 @@
 module.exports = {
-  entry: __dirname + '/client/src/renderApp.jsx',
+  entry: __dirname + '/client/src/renderPhotoService.jsx',
   module: {
     rules: [
       {
