@@ -37,16 +37,6 @@ class PhotoService extends React.Component {
     });
   }
 
-  handleViewPhotos(e) {
-    e.preventDefault;
-    console.log('clicked');
-    console.log('target', e.target);
-    console.log('this', this);
-    this.setState({
-      carousel: Carousel
-    });
-  }
-
   dupGetNumOfListingPhotos(listing) {
     let dupPhotosArray = Object.keys(listing).slice(4, -3);
     let dupListingSmallUrls = [];
