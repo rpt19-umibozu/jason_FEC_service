@@ -10,7 +10,7 @@ const recPhotos = require('../db/index.js').recPhotos;
 const fullPath = '/Users/jasonjacob/Desktop/seniorProjects/jason_FEC_service/client/dist/index.html';
 
 
-app.use(express.static(__dirname + '/../client/dist'));
+app.use(express.static(__dirname + '/../public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
