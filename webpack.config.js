@@ -3,6 +3,13 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
+      },
+      {
         test: /\.jsx$/,
         exclude: /node_modules/,
         use: {
@@ -16,6 +23,6 @@ module.exports = {
   },
   output: {
    filename: 'bundle.js',
-   path: __dirname + '/client/dist'
+   path: __dirname + '/public'
  }
 };
