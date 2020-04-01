@@ -26,8 +26,7 @@ class PhotoService extends React.Component {
       nextPrevBorders: ['2px solid #404040', 'none', 'none', 'none'],
       nextPrevOpacities: ['100%', '70%', '70%', '70%']
     }
-
-  }
+  };
 
   handleViewPhotos (e) {
     e.preventDefault;
@@ -36,7 +35,7 @@ class PhotoService extends React.Component {
       nextPrevBorders: ['2px solid #404040', 'none', 'none', 'none'],
       nextPrevOpacities: ['100%', '70%', '70%', '70%']
     });
-  }
+  };
 
   dupGetNumOfListingPhotos(listing) {
     let dupPhotosArray = Object.keys(listing).slice(4, -3);
@@ -51,7 +50,7 @@ class PhotoService extends React.Component {
       }
     }
     return Math.ceil(count / 3);
-  }
+  };
 
   componentDidMount() {
     let url = window.location.href;
@@ -68,7 +67,7 @@ class PhotoService extends React.Component {
     let data = {listingId: id};
       $.ajax({
         method: 'GET',
-        url: '/listing-info',
+        url: 'http://localhost:3002/listing-info',
         data,
         dataType: 'text',
         success: (result) => {
@@ -148,7 +147,7 @@ class PhotoService extends React.Component {
       e.preventDefault();
       console.log('default prevented');
     }
-  }
+  };
 
   handleExit(e) {
     e.preventDefault();
@@ -183,7 +182,6 @@ class PhotoService extends React.Component {
         nextPrevImages: [this.state.currentListing[`photo${photoNumber - 3}_b`], this.state.currentListing[`photo${photoNumber - 2}_b`], this.state.currentListing[`photo${photoNumber - 1}_b`], this.state.currentListing[`photo${photoNumber}_b`]],
         nextPrevBorders: ['none', 'none', '2px solid #404040', 'none'],
         nextPrevOpacities: ['70%', '70%', '100%', '70%']
-
       })
     } else {
       this.setState((prevState) => {
@@ -205,7 +203,7 @@ class PhotoService extends React.Component {
         }
       })
     }
-  }
+  };
 
   handleRightClick(e) {
     e.preventDefault();
@@ -246,7 +244,7 @@ class PhotoService extends React.Component {
         }
       })
     }
-  }
+  };
 
   handlePhotoClick(e) {
     e.preventDefault();
@@ -297,7 +295,7 @@ class PhotoService extends React.Component {
         <HardcodePhotos/>
       </div>
     )
-  }
-}
+  };
+};
 
 export default PhotoService;

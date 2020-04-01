@@ -33,7 +33,7 @@ class PhotoGallery extends React.Component {
     let data = {listingId: this.props.state.currentListing.listing_id};
     $.ajax({
       method: 'POST',
-      url: '/favorite',
+      url: 'https://localhost:3002/favorite',
       data,
       success: (result) => {
         console.log('successful fav save', result);
@@ -83,7 +83,6 @@ class PhotoGallery extends React.Component {
 
   handleMouseEnter(e) {
     let id = e.target.id.split('').pop();
-    console.log('id', id);
     this.setState((prevState) => ({
       photoOpacities: prevState.photoOpacities.map((x, i) => {
         if (i === 0 || i === Number(id)) {
