@@ -69,7 +69,7 @@ app.get('/listing-info', (req, res) => {
   }
 });
 
-//reload page with product identifier in url
+// reload page with product identifier in url
 app.get('/:id', (req, res) => {
   res.sendFile(fullPath);
 });
