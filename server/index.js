@@ -70,9 +70,7 @@ app.get('/listing-info', (req, res) => {
 });
 
 // reload page with product identifier in url
-app.get('/:id', (req, res) => {
-  res.sendFile(fullPath);
-});
+app.use('/:id', express.static(__dirname + '/../public/index.html'));
 
 app.post('/favorite', (req, res) => {
   let id = req.body.listingId;
