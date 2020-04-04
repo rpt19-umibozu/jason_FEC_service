@@ -7,9 +7,12 @@ const getMainRouteString = require('../db/index.js').getMainRouteString;
 const getMainRouteNum = require('../db/index.js').getMainRouteNum;
 const toggleFavorite = require('../db/index.js').toggleFavorite;
 const recPhotos = require('../db/index.js').recPhotos;
-const fullPath = '/Users/jasonjacob/Desktop/seniorProjects/jason_FEC_service/client/dist/index.html';
+const fullPath = '/Users/jasonjacob/Desktop/seniorProjects/rpt19-front-end-capstone/jason_FEC_service/public/index.html';
 
-
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
 app.use(express.static(__dirname + '/../public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -66,10 +69,8 @@ app.get('/listing-info', (req, res) => {
   }
 });
 
-//reload page with product identifier in url
-app.get('/:id', (req, res) => {
-  res.sendFile(fullPath);
-});
+// reload page with product identifier in url
+app.use('/:id', express.static(__dirname + '/../public/index.html'));
 
 app.post('/favorite', (req, res) => {
   let id = req.body.listingId;
