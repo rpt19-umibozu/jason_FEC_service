@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App Component Correctly render <App/> 1`] = `
+Object {
+  "isHidden": false,
+  "tag": "TEXT",
+  "text": "{\\"type\\":{\\"__esModule\\":true},\\"key\\":null,\\"ref\\":null,\\"props\\":{},\\"_owner\\":null,\\"_store\\":{}}",
+}
+`;

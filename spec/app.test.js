@@ -7,14 +7,14 @@ const puppeteer = require('puppeteer');
 const pageUrl = 'http://localhost:3002/10001';
 const renderer = require("react-test-renderer");
 const $ = require('jquery');
-const App = require('../client/src/app.jsx');
+const PhotoService = require('../client/src/PhotoService.jsx').default;
 const Carousel = require('../client/src/components/Carousel.jsx');
 const stable = require('core-js/stable');
 const regenerator = require('regenerator-runtime/runtime');
 const { configure } = require('enzyme');
 configure({ adapter: new Adapter() });
 jest.mock('../client/src/components/Carousel.jsx');
-jest.mock('../client/src/app.jsx');
+jest.mock('../client/src/PhotoService.jsx');
 let listing = {
   createdAt: "2020-03-22T07:00:00.000Z",
   id: 1,
@@ -117,85 +117,87 @@ let listing = {
 
 //End-to-end tests
 
-let page;
-let browser;
-const width = 1280;
-const height = 720;
+// let page;
+// let browser;
+// const width = 1280;
+// const height = 720;
 
 
-beforeAll(async() => {
-  browser = await puppeteer.launch({
-    headless: false,
-    slowMo: 80,
-    args: [`--window-size=${width},${height}`]
-  });
-  page = await browser.newPage();
-  await page.setViewport({ width, height });
-});
+// beforeAll(async() => {
+//   browser = await puppeteer.launch({
+//     headless: false,
+//     slowMo: 80,
+//     args: [`--window-size=${width},${height}`]
+//   });
+//   page = await browser.newPage();
+//   await page.setViewport({ width, height });
+// });
 
-afterAll(() => {
-  browser.close();
-});
+// afterAll(() => {
+//   browser.close();
+// });
 
-describe('test assertion tests', () => {
-  beforeEach(async () => {
-    await page.goto(pageUrl, {waitUntil: 'networkidle2'});
-  });
-  test('Asserts tests are running', () => {
-    expect(true).toBe(true);
-    expect(false).toBeFalsy();
-    expect(true).toBeTruthy();
-  });
-});
+// describe('test assertion tests', () => {
+//   beforeEach(async () => {
+//     await page.goto(pageUrl, {waitUntil: 'networkidle2'});
+//   });
+//   test('Asserts tests are running', () => {
+//     expect(true).toBe(true);
+//     expect(false).toBeFalsy();
+//     expect(true).toBeTruthy();
+//   });
+// });
 
-describe('NavBar', () => {
-  beforeEach(async () => {
-    await page.goto(pageUrl, {waitUntil: 'networkidle2'});
-  });
-  test('navigation page links', async () => {
-    var div = '#navBarLinks';
-    const navBarLinks = await page.$eval(div, (e) => e.textContent);
-    expect(navBarLinks).toEqual('Add listing⠀⠀⠀Host⠀⠀⠀Saved⠀⠀⠀ Trips⠀⠀⠀Messages⠀⠀ ⠀Help');
-  });
-});
+// describe('NavBar', () => {
+//   beforeEach(async () => {
+//     await page.goto(pageUrl, {waitUntil: 'networkidle2'});
+//   });
+//   test('navigation page links', async () => {
+//     var div = '#navBarLinks';
+//     const navBarLinks = await page.$eval(div, (e) => e.textContent);
+//     expect(navBarLinks).toEqual('Add listing⠀⠀⠀Host⠀⠀⠀Saved⠀⠀⠀ Trips⠀⠀⠀Messages⠀⠀ ⠀Help');
+//   });
+// });
 
-describe('View Photos Button', async () => {
-  beforeEach( async () => {
-    await page.goto(pageUrl, {waitUntil: 'networkidle2'});
-  });
+// describe('View Photos Button', async () => {
+//   beforeEach( async () => {
+//     await page.goto(pageUrl, {waitUntil: 'networkidle2'});
+//   });
 
-  test('carousel does not exist at first', () => {
-    let carouselDiv = '#carouselContainer';
-    expect(carouselDiv).not.toBe(true);
+//   test('carousel does not exist at first', () => {
+//     let carouselDiv = '#carouselContainer';
+//     expect(carouselDiv).not.toBe(true);
 
-  })
+//   })
 
-  test('click renders carousel Component', async () => {
-    let viewPhotosButton = '#viewPhotos';
-    let carouselDiv = '#carouselContainer';
-    await page.click(viewPhotosButton);
-    expect(carouselDiv).toBeTruthy();
-  });
-});
+//   test('click renders carousel Component', async () => {
+//     let viewPhotosButton = '#viewPhotos';
+//     let carouselDiv = '#carouselContainer';
+//     await page.click(viewPhotosButton);
+//     expect(carouselDiv).toBeTruthy();
+//   });
+// });
+
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 // attempted other tests
 
-// describe('App Component', () => {
+// describe('PhotoService Component', () => {
 
 //   beforeEach(async () => {
-//     App.mockClear();
+//     app.mockClear();
 //   });
 
 //   test('constructor was called', () => {
 //     class app {
 //       constructor() {
-//         this.app = new App();
+//         this.app = new PhotoService();
 //       }
 //       newGetNumOfListingPhotos() {
 //         this.app.dupGetNumOfListing(listing);
 //       }
 //     }
-//     const method = jest.spyOn(App, 'dupGetNumOfListingPhotos');
+//     const method = jest.spyOn(app, 'dupGetNumOfListingPhotos');
 //     const numOfListings = app.dupGetNumOfListingPhotos(listing);
 //     expect(method).toHaveBeenCalled();
 //     expect(numOfListings).toBe(30);
@@ -204,15 +206,28 @@ describe('View Photos Button', async () => {
 // });
 
 
-
-// describe('App Component', () => {
-
-//   beforeEach( async () => {
-//     await page.goto(pageUrl, {waitUntil: 'networkidle2'});
-//   });
-
-//   test('Correctly render <App/>', () => {
-//     const carousel = JSON.stringify(renderer.create(<Carousel/>));
-//     expect(carousel).toMatchSnapshot();
-//   });
+// test('Correctly render <App/>', () => {
+//   const app = renderer.create(JSON.stringify(<PhotoService />)).getInstance();
+//   let listingPhotos = app.dupGetNumOfListingPhotos(listing);
+//   expect(listingPhotos).toEqual(30);
 // });
+
+
+
+
+
+describe('PhotoService Component', () => {
+
+  const div = document.createElement('photoServiceClone');
+
+  afterEach( async () => {
+    ReactDOM.unmountComponentAtNode(div);
+  });
+
+  test('PhotoService tests', () => {
+    ReactDOM.render(<PhotoService />, div);
+    console.log('true');
+  });
+
+});
+
