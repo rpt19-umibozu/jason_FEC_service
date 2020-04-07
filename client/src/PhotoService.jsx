@@ -163,6 +163,7 @@ class PhotoService extends React.Component {
 
   handleLeftClick(e) {
     e.preventDefault();
+    console.log('HERE', $('#prevAndNextImagesContainer')[0].children[0].style.cssText);
     let photoNumber = this.state.currentPhotoIndexInListing;
     let max = this.state.numOfCurrentListingPhotos;
     if (photoNumber !== 1) {

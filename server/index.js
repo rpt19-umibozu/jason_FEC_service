@@ -74,6 +74,7 @@ app.use('/:id', express.static(__dirname + '/../public/index.html'));
 
 app.post('/favorite', (req, res) => {
   let id = req.body.listingId;
+  console.log('id', id)
   toggleFavorite(id)
   .then((results) => {
     res.send(results);
