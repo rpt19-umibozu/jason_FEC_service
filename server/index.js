@@ -83,3 +83,5 @@ app.post('/favorite', (req, res) => {
     console.log('error', err);
   });
 });
+
+module.exports = app;

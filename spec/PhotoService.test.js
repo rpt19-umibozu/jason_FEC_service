@@ -54,7 +54,7 @@ describe('NavBar', () => {
   beforeEach(async () => {
     await page.goto(pageUrl, {waitUntil: 'networkidle2'});
   });
-  test('navigation page links', async () => {
+  test('page links are correctly rendered', async () => {
     var div = '#navBarLinks';
     const navBarLinks = await page.$eval(div, (e) => e.textContent);
     expect(navBarLinks).toEqual('Add listing⠀⠀⠀Host⠀⠀⠀Saved⠀⠀⠀ Trips⠀⠀⠀Messages⠀⠀ ⠀Help');
@@ -78,12 +78,9 @@ describe('View Photos Button', () => {
   });
 });
 
-// integration tests
 
 describe('PhotoService', () => {
-
   const wrapper = shallow(<PhotoService />);
-
   test('should be defined', () => {
     expect(PhotoService).toBeDefined();
   });
@@ -95,6 +92,5 @@ describe('PhotoService', () => {
     expect(wrapper.find(HardcodePhotos)).toBe.true;
     expect(wrapper.find(NavBar)).toBeTruthy();
   });
-
 });
 

@@ -29,7 +29,7 @@ describe('Carousel', () => {
 });
 
 
-// End-to-end tests
+// End-to-end (functional) tests
 
 let page;
 let browser;
@@ -56,16 +56,15 @@ describe('Carousel Component', () => {
 
   test('dynamic styling is correct', async () => {
     await page.click('#photo2');
-    let preNextPrev1 = await page.$eval('#prevAndNextImagesContainer', (e) => e[0].children[0]);
-    let preNextPrev2 = await page.$eval('#prevAndNextImagesContainer', (e) => e[0].children[1]);
-    console.log('preNextPrev1', preNextPrev1);
-      expect(preNextPrev1.style.cssText).toBe('border: none; opacity: 0.7;');
-      expect(preNextPrev2.style.cssText).toBe('border: 2px solid rgb(64, 64, 64); opacity: 1;');
+    let preNextPrev1 = await page.$eval('#prevAndNextImagesContainer', (e) => e.innerHTML.split('style="')[1].split(';')[0]);
+    let preNextPrev2 = await page.$eval('#prevAndNextImagesContainer', (e) => e.innerHTML.split('style="')[2].split(';')[0]);
+    expect(preNextPrev1).toBe('border: none');
+    expect(preNextPrev2).toBe('border: 2px solid rgb(64, 64, 64)');
 
     await page.click('#carouselLeftButton');
-    let preNextPrev3 = await page.$eval('#prevAndNextImagesContainer', (e) => e[0].children[0]);
-    let preNextPrev4 = await page.$eval('#prevAndNextImagesContainer', (e) => e[0].children[1]);
-    expect(preNextPrev3.style.cssText).toBe('border: 2px solid rgb(64, 64, 64); opacity: 1;');
-    expect(preNextPrev4.style.cssText).toBe('border: none; opacity: 0.7;');
+    let preNextPrev3 = await page.$eval('#prevAndNextImagesContainer', (e) => e.innerHTML.split('style="')[1].split(';')[0]);
+    let preNextPrev4 = await page.$eval('#prevAndNextImagesContainer', (e) => e.innerHTML.split('style="')[2].split(';')[0]);
+    expect(preNextPrev3).toBe('border: 2px solid rgb(64, 64, 64)');
+    expect(preNextPrev4).toBe('border: none');
   });
 });

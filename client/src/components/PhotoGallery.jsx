@@ -39,7 +39,7 @@ class PhotoGallery extends React.Component {
         console.log('successful fav save', result);
       },
       error: (err) => {
-        console.log('error broh', err);
+        console.log('error', err);
       }
     });
     if (!this.state.heart) {
