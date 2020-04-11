@@ -6,7 +6,7 @@ const Enzyme = require('enzyme');
 const { mount, shallow, render } = require('enzyme');
 const Adapter = require('enzyme-adapter-react-16');
 const puppeteer = require('puppeteer');
-const pageUrl = 'http://localhost:3002/10001';
+const pageUrl = 'http://ec2-54-183-138-229.us-west-1.compute.amazonaws.com:3002/10001';
 const renderer = require("react-test-renderer");
 const $ = require('jquery');
 const polyfill = require('babel-polyfill');
@@ -149,7 +149,7 @@ describe("/listing-info route", () => {
   test("should respond to a valid GET request with listing object", async (done) => {
     const responseMock = listing;
     const response = await request
-      .get('http://localhost:3002/listing-info', {listingId: '10001'})
+      .get('http://ec2-54-183-138-229.us-west-1.compute.amazonaws.com:3002/listing-info', {listingId: '10001'})
       .then((response) => {
         delete response.body[0].createdAt;
         delete response.body[0].is_favorite;
@@ -169,7 +169,7 @@ describe("/favorite route", () => {
   test("should respond to a post to a valid POST to /favorite with a confirmation", async (done) => {
     const responseMock = '(Rows matched: 1  Changed: 1  Warnings: 0';
     const response = await request
-    .post('http://localhost:3002/favorite', {listingId: '10001'})
+    .post('http://ec2-54-183-138-229.us-west-1.compute.amazonaws.com:3002/favorite', {listingId: '10001'})
     .then((response) => {
       expect(response.statusCode).toBe(200);
       expect(response.body.message).toEqual(responseMock);
@@ -187,7 +187,7 @@ describe("/rec-photos route", () => {
   test("should respond to a valid GET request with an array of all small(b) listing photos", async (done) => {
     const responseMock = recPhotosMock;
     const response = await request
-    .get('http://localhost:3002/rec-photos', {listingId: '10001'})
+    .get('http://ec2-54-183-138-229.us-west-1.compute.amazonaws.com:3002/rec-photos', {listingId: '10001'})
     .then((response) => {
       expect(response.statusCode).toBe(200);
       expect(response.body).toEqual(responseMock);
