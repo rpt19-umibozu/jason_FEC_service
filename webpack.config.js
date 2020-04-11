@@ -26,7 +26,7 @@ module.exports = {
    path: __dirname + '/public'
   },
   apps: [{
-    name: "jason_FEC_service-client",
+    name: "client-jason_FEC_service",
     script: "./public/bundle.js",
     watch: true,
     env: {
@@ -37,7 +37,7 @@ module.exports = {
     }
   },
   {
-    name: "jason_FEC_service-api",
+    name: "api-jason_FEC_service",
     script: "./server/index.js",
     watch: true,
     env: {
