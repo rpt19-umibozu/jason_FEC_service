@@ -17,9 +17,9 @@ class PhotoGallery extends React.Component {
       heartSize: '24px',
       heartPosition: '10px 6px',
       shareButtonMargin: '23px 0 0 130px',
-      shareBottom: '657px',
+      shareBottom: '600px',
       shareRight: '131px',
-      saveBottom: '657px',
+      saveBottom: '600px',
       saveLeft: '1308px',
       photoOpacities: ['1-index-array', '100%', '100%', '100%', '100%', '100%']
     };
@@ -33,7 +33,7 @@ class PhotoGallery extends React.Component {
     let data = {listingId: this.props.state.currentListing.listing_id};
     $.ajax({
       method: 'POST',
-      url: 'http://localhost:3002/favorite',
+      url: 'http://ec2-54-183-138-229.us-west-1.compute.amazonaws.com:3002/favorite',
       data: data,
       success: (result) => {
         console.log('successful fav save', result);
@@ -55,8 +55,7 @@ class PhotoGallery extends React.Component {
         shareButtonMargin: '23px 0 0 121px',
         saveButtonMargin: '22.5px 0 0 18.5px',
         shareRight: '141px',
-        saveLeft: '1297px',
-        saveBottom: '656px'
+        saveLeft: '1297px'
       });
     } else {
       this.setState({
@@ -70,8 +69,7 @@ class PhotoGallery extends React.Component {
         heartPosition: '8px 4.8px',
         shareButtonMargin: '23px 0 0 130px',
         shareRight: '131px',
-        saveLeft: '1308px',
-        saveBottom: '657px'
+        saveLeft: '1308px'
       });
     }
   };
