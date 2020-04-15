@@ -23,6 +23,7 @@ app.listen(port, () => {
 
 app.get('/:id/rec-photos', (req, res) => {
   let id = req.path.split('/')[1];
+  console.log('id', id);
   if (id === 'rec-photos') {
     id = 10001;
   }
