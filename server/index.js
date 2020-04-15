@@ -21,8 +21,11 @@ app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
 
-app.get('/rec-photos', (req, res) => {
+app.get('/:id/rec-photos', (req, res) => {
   let id = req.path.split('/')[1];
+  if (id === 'rec-photos') {
+    id = 10001;
+  }
   recPhotos(id)
   .then((results) => {
     results = results[0];
