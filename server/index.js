@@ -21,8 +21,9 @@ app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
 
-app.get('/rec-photos', (req, res) => {
-  let id = req.query.listingId;
+app.get('/:id/rec-photos', (req, res) => {
+  let id = req.path.split('/')[1];
+  console.log('id', id);
   recPhotos(id)
   .then((results) => {
     results = results[0];
