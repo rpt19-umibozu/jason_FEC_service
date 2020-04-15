@@ -67,7 +67,7 @@ class PhotoService extends React.Component {
     let data = {listingId: id};
       $.ajax({
         method: 'GET',
-        url: 'http://ec2-54-183-138-229.us-west-1.compute.amazonaws.com:3002/listing-info',
+        url: 'http://localhost:3002/listing-info',
         data,
         dataType: 'text',
         success: (result) => {
