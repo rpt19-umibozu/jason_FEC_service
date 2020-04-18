@@ -26,13 +26,5 @@ module.exports = {
   output: {
    filename: 'bundle.js',
    path: __dirname + '/public'
-  },
-  plugins: [
-    new webpack.DefinePlugin({ // <-- key to reducing React's size
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    }),
-    new webpack.optimize.AggressiveMergingPlugin()//Merge chunks
-  ]
+  }
 };

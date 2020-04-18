@@ -10,7 +10,7 @@ const recPhotos = require('../db/index.js').recPhotos;
 const fullPath = '/home/ubuntu/jason_FEC_service/public/index.html';
 var compression = require(‘compression’);
 
-// app.use(compression());
+app.use(compression());
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   next();
