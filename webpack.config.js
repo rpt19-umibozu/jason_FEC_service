@@ -1,3 +1,6 @@
+const webpack = require('webpack');
+const CompressionPlugin = require('compression-webpack-plugin');
+
 module.exports = {
   entry: __dirname + '/client/src/renderPhotoService.jsx',
   module: {
@@ -25,4 +28,14 @@ module.exports = {
    filename: 'bundle.js',
    path: __dirname + '/public'
   },
+  plugins: [
+    new webpack.DefinePlugin({ // <-- key to reducing React's size
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.DedupePlugin(), //dedupe similar code
+    new webpack.optimize.UglifyJsPlugin(), //minify everything
+    new webpack.optimize.AggressiveMergingPlugin()//Merge chunks
+  ]
 };
