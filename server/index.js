@@ -7,12 +7,24 @@ const getMainRouteString = require('../db/index.js').getMainRouteString;
 const getMainRouteNum = require('../db/index.js').getMainRouteNum;
 const toggleFavorite = require('../db/index.js').toggleFavorite;
 const recPhotos = require('../db/index.js').recPhotos;
+const expressStaticGzip = require("express-static-gzip");
+const path = require('path');
 const fullPath = '/home/ubuntu/jason_FEC_service/public/index.html';
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   next();
 });
+
+app.use('/', expressStaticGzip(path.join(__dirname + '/../public'), {
+  enableBrotli: true,
+  customCompressions: [{
+      encodingName: 'deflate',
+      fileExtension: 'zz'
+  }],
+  orderPreference: ['br']
+}));
+
 app.use(express.static(__dirname + '/../public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
