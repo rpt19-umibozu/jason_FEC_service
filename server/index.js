@@ -7,7 +7,7 @@ const getMainRouteString = require('../db/index.js').getMainRouteString;
 const getMainRouteNum = require('../db/index.js').getMainRouteNum;
 const toggleFavorite = require('../db/index.js').toggleFavorite;
 const recPhotos = require('../db/index.js').recPhotos;
-const fullPath = '/Users/jasonjacob/Desktop/seniorProjects/rpt19-front-end-capstone/jason_FEC_service/public/index.html';
+const fullPath = '/home/ubuntu/jason_FEC_service/public/index.html';
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
