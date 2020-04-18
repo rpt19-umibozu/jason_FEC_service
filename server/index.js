@@ -72,6 +72,12 @@ app.get('/listing-info', (req, res) => {
   }
 });
 
+app.get('*.js', function (req, res, next) {
+  req.url = req.url + '.gz';
+  res.set('Content-Encoding', 'gzip');
+  next();
+});
+
 // reload page with product identifier in url
 app.use('/:id', express.static(__dirname + '/../public/index.html'));
 
