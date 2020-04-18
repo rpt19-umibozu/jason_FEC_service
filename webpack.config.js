@@ -35,7 +35,7 @@ module.exports = {
       }
     }),
     new webpack.optimize.AggressiveMergingPlugin(),//Merge chunks
-    new CompressionPlugin({   <-- Add this
+    new CompressionPlugin({
       asset: "[path].gz[query]",
       algorithm: "gzip",
       test: /\.js$|\.css$|\.html$/,
