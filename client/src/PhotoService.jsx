@@ -1,4 +1,3 @@
-import React from 'react';
 import $ from 'jquery';
 import NavBar from './components/NavBar.jsx';
 import PhotoGallery from './components/PhotoGallery.jsx';

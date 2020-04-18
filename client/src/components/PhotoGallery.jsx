@@ -1,4 +1,3 @@
-import React from 'react';
 import $ from 'jquery';
 
 class PhotoGallery extends React.Component {
