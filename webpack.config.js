@@ -21,8 +21,20 @@ module.exports = {
       }
     ]
   },
+  devtool: '',
   output: {
    filename: 'bundle.js',
    path: __dirname + '/public'
-  }
+  },
+  optimization: {
+		splitChunks: {
+			cacheGroups: {
+				commons: {
+					test: /[\\/]node_modules[\\/]/,
+					name: 'vendors',
+					chunks: 'all'
+				}
+			}
+		}
+	}
 };
