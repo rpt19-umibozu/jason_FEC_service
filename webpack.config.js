@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const BrotliPlugin = require('brotli-webpack-plugin');
 
 module.exports = {
@@ -34,6 +35,7 @@ module.exports = {
 			test: /\.(js|css|html|svg)$/,
 			threshold: 10240,
 			minRatio: 0.8
-		})
+    }),
+    new webpack.optimize.UglifyJsPlugin()
 	]
 };
