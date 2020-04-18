@@ -8,7 +8,9 @@ const getMainRouteNum = require('../db/index.js').getMainRouteNum;
 const toggleFavorite = require('../db/index.js').toggleFavorite;
 const recPhotos = require('../db/index.js').recPhotos;
 const fullPath = '/home/ubuntu/jason_FEC_service/public/index.html';
+var compression = require(‘compression’);
 
+app.use(compression());
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   next();
@@ -70,12 +72,6 @@ app.get('/listing-info', (req, res) => {
       console.log('error', err);
     });
   }
-});
-
-app.get('*.js', function (req, res, next) {
-  req.url = req.url + '.gz';
-  res.set('Content-Encoding', 'gzip');
-  next();
 });
 
 // reload page with product identifier in url
