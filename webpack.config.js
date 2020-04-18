@@ -37,6 +37,12 @@ module.exports = {
 			threshold: 10240,
 			minRatio: 0.8
     }),
+    new webpack.DefinePlugin({ // <-- key to reducing React's size
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.AggressiveMergingPlugin()//Merge chunks
   ],
   optimization: {
     minimizer: [
