@@ -41,7 +41,6 @@ app.get('/:id/rec-photos', (req, res) => {
   recPhotos(id)
   .then((results) => {
     results = results[0];
-    console.log('pre-results', results);
     let keys = Object.keys(results);
     let newKey;
     for (let key of keys) {
@@ -53,7 +52,6 @@ app.get('/:id/rec-photos', (req, res) => {
         delete results[key];
       }
   }
-    console.log('post-results', results)
     res.send(results);
   })
   .catch((err) => {
