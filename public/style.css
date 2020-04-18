@@ -92,8 +92,8 @@
   margin: 0 -8px;
 }
 
-#PhotoService #shareButton #save {
-  bottom: 655px;
+#PhotoService #shareButton #Save {
+  bottom: 655px !important;
 }
 
 #PhotoService .photoGalButton {
