@@ -13,7 +13,7 @@ class PhotoGallery extends React.Component {
       saveButtonValue: 'Save',
       saveButtonMargin: '23px 0 0 18.7px',
       saveButtonWidth: '90px',
-      saveButtonHeight: '360px',
+      saveButtonHeight: '36px',
       heartSize: '24px',
       heartPosition: '10px 6px',
       shareButtonMargin: '23px 0 0 130px',
@@ -109,7 +109,7 @@ class PhotoGallery extends React.Component {
         </div>
         <div className="photoContainer" style={{overflow: 'hidden', height:'219px', width:'24.87%', border: '1px solid #454545', backgroundColor:'#454545', float:'left'}}>
           <img src={`${this.props.state.currentListing.photo4_b}`} onMouseEnter={this.handleMouseEnter.bind(this)} onMouseLeave={this.handleMouseLeave.bind(this)} className="innerPhoto" id="photo4" onClick={this.props.handlePhotoClick} style={{opacity: `${this.state.photoOpacities[4]}`, backgroundImage:`url(${this.props.state.currentListing.photo4_b})`, backgroundSize:'cover', backgroundRepeat:'no-repeat', height:'110%', width:'100%', backgroundColor:'#454545', float:'left'}}/>
-          <input className="photoGalButton" type="button" value="Share" onClick={this.handleShare.bind(this)} style={{position: 'absolute', bottom: `${this.state.shareBottom}`, right: `${this.state.shareRight}`, overflow: 'hidden', backgroundImage:'url(https://fec-photos.s3-us-west-1.amazonaws.com/otherPics/share_icon.png)', backgroundRepeat:'no-repeat', backgroundSize:'26px', backgroundPosition:'10px 5px', height:'36px', width:'96px', border:'none', borderRadius:'4px', margin:`${this.state.shareButtonMargin}`}}></input>
+          <input className="photoGalButton" id="sharebutton" type="button" value="Share" onClick={this.handleShare.bind(this)} style={{position: 'absolute', bottom: `${this.state.shareBottom}`, right: `${this.state.shareRight}`, overflow: 'hidden', backgroundImage:'url(https://fec-photos.s3-us-west-1.amazonaws.com/otherPics/share_icon.png)', backgroundRepeat:'no-repeat', backgroundSize:'26px', backgroundPosition:'10px 5px', height:'36px', width:'96px', border:'none', borderRadius:'4px', margin:`${this.state.shareButtonMargin}`}}></input>
           <input className="photoGalButton" id="Save" type="button" value={`${this.state.saveButtonValue}`} onClick={this.handleSaved.bind(this)} style={{position: 'absolute', bottom: `${this.state.saveBottom}`, left: `${this.state.saveLeft}`, overflow: 'hidden', backgroundImage:`url(${this.state.heartPhoto})`, backgroundRepeat:'no-repeat', backgroundSize:`${this.state.heartSize}`, backgroundPosition:`${this.state.heartPosition}`, height:`${this.state.saveButtonHeight}`, width:`${this.state.saveButtonWidth}`, border:'none', borderRadius:'4px', margin:`${this.state.saveButtonMargin}`}}></input>
         </div>
         <div className="photoContainer" style={{overflow: 'hidden', height:'219px', width:'24.8%', border: '1px solid #454545', backgroundColor:'#454545', float:'left'}}>
