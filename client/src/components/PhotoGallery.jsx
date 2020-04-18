@@ -1,4 +1,3 @@
-import $ from 'jquery';
 
 class PhotoGallery extends React.Component {
   constructor(props) {

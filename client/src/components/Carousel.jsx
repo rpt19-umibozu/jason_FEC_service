@@ -1,4 +1,3 @@
-import $ from 'jquery';
 
 class Carousel extends React.Component {
   constructor(props) {
