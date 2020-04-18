@@ -8,7 +8,7 @@ const getMainRouteNum = require('../db/index.js').getMainRouteNum;
 const toggleFavorite = require('../db/index.js').toggleFavorite;
 const recPhotos = require('../db/index.js').recPhotos;
 const fullPath = '/home/ubuntu/jason_FEC_service/public/index.html';
-var compression = require(‘compression’);
+// var compression = require(‘compression’);
 
 // app.use(compression());
 app.use(function(req, res, next) {
