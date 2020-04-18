@@ -17,9 +17,9 @@ class PhotoGallery extends React.Component {
       heartSize: '24px',
       heartPosition: '10px 6px',
       shareButtonMargin: '23px 0 0 130px',
-      shareBottom: '610px',
+      shareBottom: '655px',
       shareRight: '131px',
-      saveBottom: '610px',
+      saveBottom: '655px',
       saveLeft: '1308px',
       photoOpacities: ['1-index-array', '100%', '100%', '100%', '100%', '100%']
     };
