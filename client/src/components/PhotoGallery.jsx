@@ -13,7 +13,7 @@ class PhotoGallery extends React.Component {
       saveButtonValue: 'Save',
       saveButtonMargin: '23px 0 0 18.7px',
       saveButtonWidth: '90px',
-      saveButtonHeight: '36px',
+      saveButtonHeight: '360px',
       heartSize: '24px',
       heartPosition: '10px 6px',
       shareButtonMargin: '23px 0 0 130px',
