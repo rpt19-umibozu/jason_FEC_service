@@ -1,3 +1,4 @@
+import React from 'react';
 
 class PhotoGallery extends React.Component {
   constructor(props) {
