@@ -8,8 +8,7 @@
 1. [Copyright and License](#Copyright-and-License)
 
 ## Overview
-The Reservation Module includes a calendar feature.
-This Reservation Module Service was designed and written together with three other services to create an Item Listing Page within a team of 4 people.
+The Photo Service Module includes a double, mini carousel inside a carousel feature made from scratch and was designed with service-oriented architecture as a microservice to compliment three other services (written by three other teammates) to create an Item Listing Page from a mockup.
 
 ### My contributions:
 
