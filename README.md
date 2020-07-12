@@ -20,9 +20,6 @@ This Reservation Module Service was designed and written together with three oth
 * Utilized agile workflow practices on a 4 person remote team.
 
 
-
-
-
 ## Other Services
 
   1. [Reservations Service](https://github.com/rpt19-umibozu/FEC_Yingwen_service)
@@ -32,24 +29,25 @@ This Reservation Module Service was designed and written together with three oth
   3. [Recommendation Service](https://github.com/rpt19-umibozu/FEC-Youzhu-recommendation)
 
 
-
-
 ## Usage
 
 ### npm install
   Install the dependencies in a local node_modules folder
 
 ### mongo
-  Enter into MongoDB shell
+  Enter into Mongo shell
 
-#### use reservation_service
+>> #### use reservation_service
   Create database and enter into it
 
-#### db.createCollection('listingitems');
+>> #### db.createCollection('listingitems');
   Create listingitems collection
 
-#### db.createCollection('bookings');
+>> #### db.createCollection('bookings');
   Create bookings collection
+
+>> #### CTL+C
+  Exit Mongo shell
 
 ### npm run create-data
   Create the two CSV files with seed data
