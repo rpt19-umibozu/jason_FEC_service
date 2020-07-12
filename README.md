@@ -37,16 +37,13 @@ This Reservation Module Service was designed and written together with three oth
 ### mongo
   Enter into Mongo shell
 
-> #### use reservation_service
+> ### use reservation_service
 >  Create database and enter into it
-
-> #### db.createCollection('listingitems');
+> ### db.createCollection('listingitems');
 >  Create listingitems collection
-
-> #### db.createCollection('bookings');
+> ### db.createCollection('bookings');
 >  Create bookings collection
-
-> #### CTL+C
+> ### CTL+C
 >  Exit Mongo shell
 
 ### npm run create-data
