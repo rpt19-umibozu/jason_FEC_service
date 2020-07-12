@@ -12,12 +12,9 @@ The Photo Service Module includes a double, mini carousel inside a carousel feat
 
 ### My contributions:
 
-* Designed and built the Search Bar / Photo Service / Carousel Modules.
-* Coordinated and deployed entire team’s modules on a reverse proxy server using an AWS EC2 instance.
-* Utilized agile workflow practices on a 4 person remote team.
-
-
-
+* Designed and built the Search Bar and Photo Service/Carousel Module.
+* Coordinated and deployed entire application on a reverse proxy server using AWS EC2 instances.
+* Utilized Agile (SCRUM) workflow practices on a 4 person remote team of engineers.
 
 
 ## Other Services
@@ -27,8 +24,6 @@ The Photo Service Module includes a double, mini carousel inside a carousel feat
   2. [Reviews Service](https://github.com/rpt19-umibozu/devjce-fec-service)
 
   3. [Recommendation Service](https://github.com/rpt19-umibozu/FEC-Youzhu-recommendation)
-
-
 
 
 ## Usage
@@ -42,10 +37,10 @@ The Photo Service Module includes a double, mini carousel inside a carousel feat
 ### npm run seed-db
   Seed the database
 
-### npm run react-dev
+### npm run react
   Correctly bundles the React app in production mode and optimizes the build for the best performance. Builds app into a bundle.js file in the public folder.
 
-### npm run server-dev
+### npm run start
   Runs the app in the development mode.
   Open http://localhost:3002 to view it in the browser.
 
