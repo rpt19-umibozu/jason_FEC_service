@@ -50,8 +50,9 @@ The Photo Service Module includes a double, mini carousel inside a carousel feat
 ## Tech Stack
 
 - JavaScript
+- Express
 - React
-- Node/Express
+- Node
 - MYSQL
 - Webpack
 - Babel
@@ -60,6 +61,7 @@ The Photo Service Module includes a double, mini carousel inside a carousel feat
 - Pupeteer
 - Superagent
 - AWS (EC2, S3)
+- Npm
 
 
 ## Copyright and License
