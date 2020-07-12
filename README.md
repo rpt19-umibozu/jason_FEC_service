@@ -1,5 +1,7 @@
 # Project: Front-End Capstone
 
+![](https://media.giphy.com/media/YocIBsoQydvahPJ2I3/giphy.gif)
+
 ## Table of Contents
 1. [Overview](#Overview)
 1. [Other Services](#Other-Services)
@@ -37,16 +39,31 @@ This Reservation Module Service was designed and written together with three oth
 ### npm install
   Install the dependencies in a local node_modules folder
 
-### npm run create-db
-  Create the database
+### mongo
+  Enter into MongoDB shell
 
-### npm run seed-db
-  Seed the database
+#### use reservation_service
+  Create database and enter into it
 
-### npm run react-dev
+#### db.createCollection('listingitems');
+  Create listingitems collection
+
+#### db.createCollection('bookings');
+  Create bookings collection
+
+### npm run create-data
+  Create the two CSV files with seed data
+
+### mongoimport --type csv -d reservation_service -c listingitems --headerline --drop listingInfoCSV
+  Seed the listingitems collection in the reservation_service database
+
+### mongoimport --type csv -d reservation_service -c bookings --headerline --drop bookingsInfoCSV
+  Seed the bookings collection in the reservation_service database
+
+### npm run react
   Correctly bundles the React app in production mode and optimizes the build for the best performance. Builds app into a bundle.js file in the public folder.
 
-### npm run server-dev
+### npm run start
   Runs the app in the development mode.
   Open http://localhost:3002 to view it in the browser.
 
