@@ -1,4 +1,4 @@
-# Project: Front-End Capstone
+# Front-End Capstone
 
 ![](https://media.giphy.com/media/Q8Hmu1z4kFN7sNpJoT/giphy.gif)
 
