@@ -8,13 +8,13 @@
 1. [Copyright and License](#Copyright-and-License)
 
 ## Overview
-The Photo Service Module includes a double, mini carousel inside a carousel feature made from scratch and was designed with service-oriented architecture as a microservice to compliment three other services (written by three other teammates) to create an Item Listing Page from a mockup.
+Umibozu Photo Service Module with a double, mini carousel inside a carousel feature made from scratch, designed with Service-Oriented Architecture as a Microservice to compliment three other Microservices (written by the three other engineers on my team) to create an Item Listing Page from a mockup.
 
 ### My contributions:
 
 * Designed and built the Search Bar and Photo Service/Carousel Module.
 * Coordinated and deployed entire application on a reverse proxy server using AWS EC2 instances.
-* Utilized Agile (SCRUM) workflow practices on a 4 person remote team of engineers.
+* Utilized Agile (SCRUM) workflow practices on a 4 person remote team of Software Engineers.
 
 
 ## Other Services
