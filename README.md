@@ -1,7 +1,5 @@
 # umibozu_fec_service
 
-![](https://media.giphy.com/media/Q8Hmu1z4kFN7sNpJoT/giphy.gif)
-
 ## Table of Contents
 1. [Overview](#Overview)
 1. [Other Services](#Other-Services)
