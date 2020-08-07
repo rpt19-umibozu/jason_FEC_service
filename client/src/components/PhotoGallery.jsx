@@ -17,9 +17,9 @@ class PhotoGallery extends React.Component {
       heartSize: '24px',
       heartPosition: '10px 6px',
       shareButtonMargin: '23px 0 0 130px',
-      shareBottom: '585px',
+      shareBottom: '530px',
       shareRight: '131px',
-      saveBottom: '585px',
+      saveBottom: '530px',
       saveLeft: '1308px',
       photoOpacities: ['1-index-array', '100%', '100%', '100%', '100%', '100%']
     };
@@ -33,7 +33,7 @@ class PhotoGallery extends React.Component {
     let data = {listingId: this.props.state.currentListing.listing_id};
     $.ajax({
       method: 'POST',
-      url: 'http://ec2-54-183-138-229.us-west-1.compute.amazonaws.com:3002/favorite',
+      url: 'http://localhost:3002/favorite',
       data: data,
       success: (result) => {
         console.log('successful fav save', result);
@@ -75,7 +75,6 @@ class PhotoGallery extends React.Component {
   };
 
   handleShare(e) {
-    e.preventDefault();
     alert('Listing Shared!');
   };
 

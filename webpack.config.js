@@ -1,5 +1,5 @@
 module.exports = {
-  entry: __dirname + '/client/src/renderPhotoService.jsx',
+  entry: `${__dirname}/client/src/PhotoService.jsx`,
   module: {
     rules: [
       {
@@ -23,6 +23,6 @@ module.exports = {
   },
   output: {
    filename: 'bundle.js',
-   path: __dirname + '/public'
+   path: `${__dirname}/public`
   },
 };
