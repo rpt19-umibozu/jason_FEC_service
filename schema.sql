@@ -103,6 +103,6 @@ CREATE TABLE IF NOT EXISTS Photos (
   updatedAt DATE
 );
 
-/*  Execute this file from the command line by typing:
- *    mysql -u root < schema.sql
- *  to create the database and the tables.*/
+/*
+Execute this file from command line by running the following command or run npm create-db script to create database and tables : mysql -u root < schema.sql
+ */
