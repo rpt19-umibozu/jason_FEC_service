@@ -1,5 +1,4 @@
 const request = require('superagent');
-// const supertest = require('supertest');
 const React = require('react');
 const ReactDOM = require('react-dom');
 const Enzyme = require('enzyme');

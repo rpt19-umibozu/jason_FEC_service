@@ -16,21 +16,16 @@ configure({ adapter: new Adapter() });
 jest.mock('../client/src/components/Carousel.jsx');
 
 describe('Carousel', () => {
-
   const wrapper = shallow(<Carousel />);
-
   test('should be defined', () => {
     expect(Carousel).toBeDefined();
   });
   test('should render correctly', () => {
     expect(wrapper).toMatchSnapshot();
   });
-
 });
 
-
 // End-to-end (functional) tests
-
 let page;
 let browser;
 const width = 1280;
@@ -50,6 +45,7 @@ afterAll(() => {
 });
 
 describe('Carousel Component', () => {
+
   beforeEach(async () => {
     await page.goto(pageUrl, {waitUntil: 'networkidle2'});
   });
@@ -60,7 +56,6 @@ describe('Carousel Component', () => {
     let preNextPrev2 = await page.$eval('#prevAndNextImagesContainer', (e) => e.innerHTML.split('style="')[2].split(';')[0]);
     expect(preNextPrev1).toBe('border: none');
     expect(preNextPrev2).toBe('border: 2px solid rgb(64, 64, 64)');
-
     await page.click('#carouselLeftButton');
     let preNextPrev3 = await page.$eval('#prevAndNextImagesContainer', (e) => e.innerHTML.split('style="')[1].split(';')[0]);
     let preNextPrev4 = await page.$eval('#prevAndNextImagesContainer', (e) => e.innerHTML.split('style="')[2].split(';')[0]);
