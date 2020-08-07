@@ -94,7 +94,6 @@ class PhotoService extends React.Component {
     let id = Number(e.target.id);
     let $rightButton = $('#carouselRightButton')[0];
     let $leftButton = $('#carouselLeftButton')[0];
-    console.log('here', photoNumber, id, max);
     if (photoNumber === 1) {
       if (id === 1) {
         $rightButton.click();
@@ -112,7 +111,6 @@ class PhotoService extends React.Component {
       if (id === 2) {
         $leftButton.click();
       } else if (id === 1) {
-        console.log('1');
         $leftButton.click();
         $leftButton.click();
       } else {

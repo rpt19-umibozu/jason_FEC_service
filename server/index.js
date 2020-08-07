@@ -49,7 +49,7 @@ app.get('/listing-info', (req, res) => {
       res.send(results);
     })
     .catch((err) => {
-      console.log('err', err);
+      console.log('error', err);
     });
   } else {
     //identifier is lisitng_id
@@ -69,7 +69,6 @@ app.use('/:id', express.static(__dirname + '/../public/index.html'));
 
 app.post('/favorite', (req, res) => {
   let id = req.body.listingId;
-  console.log('id', id)
   toggleFavorite(id)
   .then((results) => {
     res.send(results);
