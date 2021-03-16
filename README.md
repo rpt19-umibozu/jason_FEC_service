@@ -1,4 +1,4 @@
-# Airbnb Clone (umibozu_fec_service)
+# Photo Carousel Service (umibozu_fec_service)
 
 ![Alt Text](https://media.giphy.com/media/Q8Hmu1z4kFN7sNpJoT/giphy.gif)
 
